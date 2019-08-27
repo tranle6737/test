@@ -1,0 +1,1292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="ucomm.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="ucomm.ws.nortelnetworks.com" xmlns:intf="ucomm.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns65="pool.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="pool.data.ws.nortelnetworks.com"/>
+   <import namespace="ucomm.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="ucomm.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="pool.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ReadOptionNKDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="EmailAttachmentNKDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UCEndUserPropertiesDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="autoRead" nillable="true" type="impl:ReadOptionNKDO"/>
+       <element name="deliverVoiceEmail" type="xsd:boolean"/>
+       <element name="emailAttachmentType" nillable="true" type="impl:EmailAttachmentNKDO"/>
+       <element name="emailId" nillable="true" type="soapenc:string"/>
+       <element name="maxMsgLength" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UCPinDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="pin" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns65_RSAliasNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns65:RSAliasNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UCUserInfoDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="aliasesForExpressMsging" nillable="true" type="impl:ArrayOf_tns65_RSAliasNaturalKeyDO"/>
+       <element name="aliasesForMsgRetrieval" nillable="true" type="impl:ArrayOf_tns65_RSAliasNaturalKeyDO"/>
+       <element name="validMbxOnMAS" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GreetingNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UCGreetingDO">
+    <complexContent>
+     <extension base="impl:GreetingNaturalKeyDO">
+      <sequence>
+       <element name="emailId" nillable="true" type="soapenc:string"/>
+       <element name="key1" nillable="true" type="soapenc:string"/>
+       <element name="key2" nillable="true" type="soapenc:string"/>
+       <element name="key3" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TemporaryGreetingDO">
+    <complexContent>
+     <extension base="impl:GreetingNaturalKeyDO">
+      <sequence>
+       <element name="expiryTime" type="xsd:long"/>
+       <element name="nextActiveGreeting" nillable="true" type="impl:GreetingNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfUCGreetingDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:UCGreetingDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfGreetingNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:GreetingNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfEmailAttachmentNKDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:EmailAttachmentNKDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PrimaryAutoLoginOptionNKDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPrimaryAutoLoginOptionNKDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PrimaryAutoLoginOptionNKDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SecondaryAutoLoginOptionNKDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfSecondaryAutoLoginOptionNKDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SecondaryAutoLoginOptionNKDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfReadOptionNKDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:ReadOptionNKDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UCPrimaryAutoLoginDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="address" nillable="true" type="soapenc:string"/>
+       <element name="autoLogin" nillable="true" type="impl:PrimaryAutoLoginOptionNKDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UCSecondaryAutoLoginDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="address" nillable="true" type="soapenc:string"/>
+       <element name="autoLogin" nillable="true" type="impl:SecondaryAutoLoginOptionNKDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfUCSecondaryAutoLoginDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:UCSecondaryAutoLoginDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="pool.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="ucomm.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="RSAliasNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getValidGreetingNamesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveGreetingRequest">
+
+      <wsdl:part name="in0" type="impl:GreetingNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCGreetingsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPinExpiryTimeRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCUserInfoRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveGreetingRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidAutoReadValuesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTemporaryGreetingRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getSecondaryAutoIDsResponse">
+
+      <wsdl:part name="getSecondaryAutoIDsReturn" type="impl:ArrayOfUCSecondaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCUserPropertiesResponse">
+
+      <wsdl:part name="getUCUserPropertiesReturn" type="impl:UCEndUserPropertiesDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setTemporaryGreetingResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTemporaryGreetingResponse">
+
+      <wsdl:part name="getTemporaryGreetingReturn" type="impl:TemporaryGreetingDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifySecondaryAutoIDResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setUCUserPropertiesRequest">
+
+      <wsdl:part name="in0" type="impl:UCEndUserPropertiesDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCUserInfoResponse">
+
+      <wsdl:part name="getUCUserInfoReturn" type="impl:UCUserInfoDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSecondaryAutoIDsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidSecondaryAutoLoginValuesResponse">
+
+      <wsdl:part name="getValidSecondaryAutoLoginValuesReturn" type="impl:ArrayOfSecondaryAutoLoginOptionNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidEmailAttachmentTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="changePinResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveGreetingResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryAutoIDResponse">
+
+      <wsdl:part name="getPrimaryAutoIDReturn" type="impl:UCPrimaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changePinRequest">
+
+      <wsdl:part name="in0" type="impl:UCPinDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setTemporaryGreetingRequest">
+
+      <wsdl:part name="in0" type="impl:TemporaryGreetingDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSecondaryAutoIDRequest">
+
+      <wsdl:part name="in0" type="impl:UCSecondaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidGreetingNamesResponse">
+
+      <wsdl:part name="getValidGreetingNamesReturn" type="impl:ArrayOfGreetingNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidPrimaryAutoLoginValuesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUCGreetingResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidPrimaryAutoLoginValuesResponse">
+
+      <wsdl:part name="getValidPrimaryAutoLoginValuesReturn" type="impl:ArrayOfPrimaryAutoLoginOptionNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidSecondaryAutoLoginValuesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifySecondaryAutoIDRequest">
+
+      <wsdl:part name="in0" type="impl:UCSecondaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addSecondaryAutoIDResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getActiveGreetingResponse">
+
+      <wsdl:part name="getActiveGreetingReturn" type="impl:GreetingNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCUserPropertiesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setPrimaryAutoIDResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setUCUserPropertiesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addSecondaryAutoIDRequest">
+
+      <wsdl:part name="in0" type="impl:UCSecondaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSecondaryAutoIDResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryAutoIDRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCGreetingsResponse">
+
+      <wsdl:part name="getUCGreetingsReturn" type="impl:ArrayOfUCGreetingDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setUCGreetingRequest">
+
+      <wsdl:part name="in0" type="impl:UCGreetingDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidAutoReadValuesResponse">
+
+      <wsdl:part name="getValidAutoReadValuesReturn" type="impl:ArrayOfReadOptionNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getValidEmailAttachmentTypesResponse">
+
+      <wsdl:part name="getValidEmailAttachmentTypesReturn" type="impl:ArrayOfEmailAttachmentNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPinExpiryTimeResponse">
+
+      <wsdl:part name="getPinExpiryTimeReturn" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPrimaryAutoIDRequest">
+
+      <wsdl:part name="in0" type="impl:UCPrimaryAutoLoginDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UCPropertiesUserIF">
+
+      <wsdl:operation name="getUCUserProperties">
+
+         <wsdl:input message="impl:getUCUserPropertiesRequest" name="getUCUserPropertiesRequest"/>
+
+         <wsdl:output message="impl:getUCUserPropertiesResponse" name="getUCUserPropertiesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePin" parameterOrder="in0">
+
+         <wsdl:input message="impl:changePinRequest" name="changePinRequest"/>
+
+         <wsdl:output message="impl:changePinResponse" name="changePinResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCUserInfo">
+
+         <wsdl:input message="impl:getUCUserInfoRequest" name="getUCUserInfoRequest"/>
+
+         <wsdl:output message="impl:getUCUserInfoResponse" name="getUCUserInfoResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUCGreeting" parameterOrder="in0">
+
+         <wsdl:input message="impl:setUCGreetingRequest" name="setUCGreetingRequest"/>
+
+         <wsdl:output message="impl:setUCGreetingResponse" name="setUCGreetingResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveGreeting" parameterOrder="in0">
+
+         <wsdl:input message="impl:setActiveGreetingRequest" name="setActiveGreetingRequest"/>
+
+         <wsdl:output message="impl:setActiveGreetingResponse" name="setActiveGreetingResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTemporaryGreeting" parameterOrder="in0">
+
+         <wsdl:input message="impl:setTemporaryGreetingRequest" name="setTemporaryGreetingRequest"/>
+
+         <wsdl:output message="impl:setTemporaryGreetingResponse" name="setTemporaryGreetingResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveGreeting">
+
+         <wsdl:input message="impl:getActiveGreetingRequest" name="getActiveGreetingRequest"/>
+
+         <wsdl:output message="impl:getActiveGreetingResponse" name="getActiveGreetingResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCGreetings">
+
+         <wsdl:input message="impl:getUCGreetingsRequest" name="getUCGreetingsRequest"/>
+
+         <wsdl:output message="impl:getUCGreetingsResponse" name="getUCGreetingsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidGreetingNames">
+
+         <wsdl:input message="impl:getValidGreetingNamesRequest" name="getValidGreetingNamesRequest"/>
+
+         <wsdl:output message="impl:getValidGreetingNamesResponse" name="getValidGreetingNamesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidEmailAttachmentTypes">
+
+         <wsdl:input message="impl:getValidEmailAttachmentTypesRequest" name="getValidEmailAttachmentTypesRequest"/>
+
+         <wsdl:output message="impl:getValidEmailAttachmentTypesResponse" name="getValidEmailAttachmentTypesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidPrimaryAutoLoginValues">
+
+         <wsdl:input message="impl:getValidPrimaryAutoLoginValuesRequest" name="getValidPrimaryAutoLoginValuesRequest"/>
+
+         <wsdl:output message="impl:getValidPrimaryAutoLoginValuesResponse" name="getValidPrimaryAutoLoginValuesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidSecondaryAutoLoginValues">
+
+         <wsdl:input message="impl:getValidSecondaryAutoLoginValuesRequest" name="getValidSecondaryAutoLoginValuesRequest"/>
+
+         <wsdl:output message="impl:getValidSecondaryAutoLoginValuesResponse" name="getValidSecondaryAutoLoginValuesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidAutoReadValues">
+
+         <wsdl:input message="impl:getValidAutoReadValuesRequest" name="getValidAutoReadValuesRequest"/>
+
+         <wsdl:output message="impl:getValidAutoReadValuesResponse" name="getValidAutoReadValuesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPrimaryAutoID" parameterOrder="in0">
+
+         <wsdl:input message="impl:setPrimaryAutoIDRequest" name="setPrimaryAutoIDRequest"/>
+
+         <wsdl:output message="impl:setPrimaryAutoIDResponse" name="setPrimaryAutoIDResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPinExpiryTime">
+
+         <wsdl:input message="impl:getPinExpiryTimeRequest" name="getPinExpiryTimeRequest"/>
+
+         <wsdl:output message="impl:getPinExpiryTimeResponse" name="getPinExpiryTimeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUCUserProperties" parameterOrder="in0">
+
+         <wsdl:input message="impl:setUCUserPropertiesRequest" name="setUCUserPropertiesRequest"/>
+
+         <wsdl:output message="impl:setUCUserPropertiesResponse" name="setUCUserPropertiesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTemporaryGreeting">
+
+         <wsdl:input message="impl:getTemporaryGreetingRequest" name="getTemporaryGreetingRequest"/>
+
+         <wsdl:output message="impl:getTemporaryGreetingResponse" name="getTemporaryGreetingResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryAutoID">
+
+         <wsdl:input message="impl:getPrimaryAutoIDRequest" name="getPrimaryAutoIDRequest"/>
+
+         <wsdl:output message="impl:getPrimaryAutoIDResponse" name="getPrimaryAutoIDResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSecondaryAutoIDs">
+
+         <wsdl:input message="impl:getSecondaryAutoIDsRequest" name="getSecondaryAutoIDsRequest"/>
+
+         <wsdl:output message="impl:getSecondaryAutoIDsResponse" name="getSecondaryAutoIDsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifySecondaryAutoID" parameterOrder="in0">
+
+         <wsdl:input message="impl:modifySecondaryAutoIDRequest" name="modifySecondaryAutoIDRequest"/>
+
+         <wsdl:output message="impl:modifySecondaryAutoIDResponse" name="modifySecondaryAutoIDResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addSecondaryAutoID" parameterOrder="in0">
+
+         <wsdl:input message="impl:addSecondaryAutoIDRequest" name="addSecondaryAutoIDRequest"/>
+
+         <wsdl:output message="impl:addSecondaryAutoIDResponse" name="addSecondaryAutoIDResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSecondaryAutoID" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeSecondaryAutoIDRequest" name="removeSecondaryAutoIDRequest"/>
+
+         <wsdl:output message="impl:removeSecondaryAutoIDResponse" name="removeSecondaryAutoIDResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UCPropertiesUserService" type="impl:UCPropertiesUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUCUserProperties">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUCUserPropertiesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUCUserPropertiesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changePinRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changePinResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCUserInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUCUserInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUCUserInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUCGreeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setUCGreetingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setUCGreetingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveGreeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setActiveGreetingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setActiveGreetingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTemporaryGreeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setTemporaryGreetingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setTemporaryGreetingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getActiveGreeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getActiveGreetingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getActiveGreetingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCGreetings">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUCGreetingsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUCGreetingsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidGreetingNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getValidGreetingNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getValidGreetingNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidEmailAttachmentTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getValidEmailAttachmentTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getValidEmailAttachmentTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidPrimaryAutoLoginValues">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getValidPrimaryAutoLoginValuesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getValidPrimaryAutoLoginValuesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidSecondaryAutoLoginValues">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getValidSecondaryAutoLoginValuesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getValidSecondaryAutoLoginValuesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getValidAutoReadValues">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getValidAutoReadValuesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getValidAutoReadValuesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPrimaryAutoID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPrimaryAutoIDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPrimaryAutoIDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPinExpiryTime">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPinExpiryTimeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPinExpiryTimeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setUCUserProperties">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setUCUserPropertiesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setUCUserPropertiesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTemporaryGreeting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTemporaryGreetingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTemporaryGreetingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryAutoID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrimaryAutoIDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrimaryAutoIDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSecondaryAutoIDs">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSecondaryAutoIDsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSecondaryAutoIDsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifySecondaryAutoID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifySecondaryAutoIDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifySecondaryAutoIDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addSecondaryAutoID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addSecondaryAutoIDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addSecondaryAutoIDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSecondaryAutoID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeSecondaryAutoIDRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeSecondaryAutoIDResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucomm.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UCPropertiesUserIFService">
+
+      <wsdl:port binding="impl:UCPropertiesUserService" name="UCPropertiesUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UCPropertiesUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

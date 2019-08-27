@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="ucd.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="ucd.ws.nortelnetworks.com" xmlns:intf="ucd.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns232="group.data.ws.nortelnetworks.com" xmlns:tns271="timeblock.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="ucd.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DomainNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="group.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="ucd.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="GroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="timeblock.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="ucd.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="TimeBlockGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TimeBlockDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="days" nillable="true" type="impl:ArrayOf_soapenc_boolean"/>
+       <element name="startTime" nillable="true" type="soapenc:string"/>
+       <element name="stopTime" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="ucd.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="UCDTimeBlockGroupNKDO">
+    <complexContent>
+     <extension base="tns271:TimeBlockGroupNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_boolean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:boolean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns271_TimeBlockDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns271:TimeBlockDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UCDTimeBlockGroupDO">
+    <complexContent>
+     <extension base="impl:UCDTimeBlockGroupNKDO">
+      <sequence>
+       <element name="timeBlock" nillable="true" type="impl:ArrayOf_tns271_TimeBlockDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfUCDTimeBlockGroupDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:UCDTimeBlockGroupDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getUCDTimeBlockGroupsByUCDGroupResponse">
+
+      <wsdl:part name="getUCDTimeBlockGroupsByUCDGroupReturn" type="impl:ArrayOfUCDTimeBlockGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addUCDTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeUCDTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeUCDTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="tns2:DomainNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in2" type="impl:UCDTimeBlockGroupNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyUCDTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="tns2:DomainNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in2" type="impl:UCDTimeBlockGroupNKDO"/>
+
+      <wsdl:part name="in3" type="impl:UCDTimeBlockGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCDTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="tns2:DomainNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in2" type="impl:UCDTimeBlockGroupNKDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addUCDTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="tns2:DomainNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in2" type="impl:UCDTimeBlockGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCDTimeBlockGroupsByUCDGroupRequest">
+
+      <wsdl:part name="in0" type="tns2:DomainNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="tns232:GroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUCDTimeBlockGroupResponse">
+
+      <wsdl:part name="getUCDTimeBlockGroupReturn" type="impl:UCDTimeBlockGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyUCDTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="UCDTimeBlockGroupUserIF">
+
+      <wsdl:operation name="getUCDTimeBlockGroup" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:getUCDTimeBlockGroupRequest" name="getUCDTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:getUCDTimeBlockGroupResponse" name="getUCDTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyUCDTimeBlockGroup" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:modifyUCDTimeBlockGroupRequest" name="modifyUCDTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:modifyUCDTimeBlockGroupResponse" name="modifyUCDTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addUCDTimeBlockGroup" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:addUCDTimeBlockGroupRequest" name="addUCDTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:addUCDTimeBlockGroupResponse" name="addUCDTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeUCDTimeBlockGroup" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:removeUCDTimeBlockGroupRequest" name="removeUCDTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:removeUCDTimeBlockGroupResponse" name="removeUCDTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCDTimeBlockGroupsByUCDGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getUCDTimeBlockGroupsByUCDGroupRequest" name="getUCDTimeBlockGroupsByUCDGroupRequest"/>
+
+         <wsdl:output message="impl:getUCDTimeBlockGroupsByUCDGroupResponse" name="getUCDTimeBlockGroupsByUCDGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UCDTimeBlockGroupUserService" type="impl:UCDTimeBlockGroupUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUCDTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUCDTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUCDTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyUCDTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyUCDTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyUCDTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addUCDTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addUCDTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addUCDTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeUCDTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeUCDTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeUCDTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUCDTimeBlockGroupsByUCDGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUCDTimeBlockGroupsByUCDGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUCDTimeBlockGroupsByUCDGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ucd.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UCDTimeBlockGroupUserIFService">
+
+      <wsdl:port binding="impl:UCDTimeBlockGroupUserService" name="UCDTimeBlockGroupUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UCDTimeBlockGroupUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,1187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="ims.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="ims.ws.nortelnetworks.com" xmlns:intf="ims.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns187="cfi.ws.nortelnetworks.com" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns248="clir.ws.nortelnetworks.com" xmlns:tns64="cfv.ws.nortelnetworks.com" xmlns:tns84="tir.ws.genband.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="ims.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="clir.ws.nortelnetworks.com"/>
+   <import namespace="tir.ws.genband.com"/>
+   <import namespace="cfi.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="cfv.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="IMSComDivDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="immediateRoute" nillable="true" type="tns187:CFIRouteDO"/>
+       <element name="variantsRoute" nillable="true" type="tns64:CFVRouteDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="clir.ws.nortelnetworks.com"/>
+   <import namespace="tir.ws.genband.com"/>
+   <import namespace="cfi.ws.nortelnetworks.com"/>
+   <import namespace="ims.ws.nortelnetworks.com"/>
+   <import namespace="cfv.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType name="UserServiceProfileDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="clir.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="tir.ws.genband.com"/>
+   <import namespace="cfi.ws.nortelnetworks.com"/>
+   <import namespace="ims.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="cfv.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CLIRUserProfileDO">
+    <complexContent>
+     <extension base="tns2:UserServiceProfileDO">
+      <sequence>
+       <element name="callidPrivacyEnabled" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="tir.ws.genband.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="clir.ws.nortelnetworks.com"/>
+   <import namespace="cfi.ws.nortelnetworks.com"/>
+   <import namespace="ims.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="cfv.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="TIRUserProfileDO">
+    <complexContent>
+     <extension base="tns2:UserServiceProfileDO">
+      <sequence>
+       <element name="callidPrivacyEnabled" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="cfi.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="clir.ws.nortelnetworks.com"/>
+   <import namespace="tir.ws.genband.com"/>
+   <import namespace="ims.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="cfv.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CFIRouteDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="destination" nillable="true" type="soapenc:string"/>
+       <element name="isActive" type="xsd:boolean"/>
+       <element name="numOfRings" type="xsd:int"/>
+       <element name="sentToVoicemail" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="cfv.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="clir.ws.nortelnetworks.com"/>
+   <import namespace="tir.ws.genband.com"/>
+   <import namespace="cfi.ws.nortelnetworks.com"/>
+   <import namespace="ims.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CFVRouteDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="busyDestination" nillable="true" type="soapenc:string"/>
+       <element name="busyEnabled" type="xsd:boolean"/>
+       <element name="isActive" type="xsd:boolean"/>
+       <element name="noAnswerDestination" nillable="true" type="soapenc:string"/>
+       <element name="noAnswerEnabled" type="xsd:boolean"/>
+       <element name="notLoggedInDestination" nillable="true" type="soapenc:string"/>
+       <element name="notLoggedInEnabled" type="xsd:boolean"/>
+       <element name="numOfRings" type="xsd:int"/>
+       <element name="sentToVoicemail" type="xsd:boolean"/>
+       <element name="unreachableDestination" nillable="true" type="soapenc:string"/>
+       <element name="unreachableEnabled" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="setOIRCallidPrivacyEnabledResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getExcHomeCountryRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeExcHomeCountryRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addComDivRulesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOutgoingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getComDivRulesResponse">
+
+      <wsdl:part name="getComDivRulesReturn" type="impl:IMSComDivDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutgoingCallBarringResponse">
+
+      <wsdl:part name="getOutgoingCallBarringReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setExcHomeCountryRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getComDivRulesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setInternationalOutgoingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteComDivRulesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getInternationalOutgoingCallBarringResponse">
+
+      <wsdl:part name="getInternationalOutgoingCallBarringReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setRoamingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getRoamingCallBarringResponse">
+
+      <wsdl:part name="getRoamingCallBarringReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setRoamingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addComDivRulesRequest">
+
+      <wsdl:part name="in0" type="impl:IMSComDivDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeInternationalOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRoamingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getOIRCallidPrivacyEnabledResponse">
+
+      <wsdl:part name="getOIRCallidPrivacyEnabledReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getExcHomeCountryResponse">
+
+      <wsdl:part name="getExcHomeCountryReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setOutgoingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeInternationalOutgoingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setIncomingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRoamingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setIncomingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTIRCallidPrivacyEnabledRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTIRCallidPrivacyEnabledResponse">
+
+      <wsdl:part name="getTIRCallidPrivacyEnabledReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOIRCallidPrivacyEnabledRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getIncomingCallBarringResponse">
+
+      <wsdl:part name="getIncomingCallBarringReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setExcHomeCountryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeIncomingCallBarringResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteComDivRulesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setTIRCallidPrivacyEnabledResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getInternationalOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setInternationalOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setOIRCallidPrivacyEnabledRequest">
+
+      <wsdl:part name="in0" type="tns248:CLIRUserProfileDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutgoingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setTIRCallidPrivacyEnabledRequest">
+
+      <wsdl:part name="in0" type="tns84:TIRUserProfileDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getIncomingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeExcHomeCountryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeIncomingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRoamingCallBarringRequest">
+
+   </wsdl:message>
+
+   <wsdl:portType name="IMSUserIF">
+
+      <wsdl:operation name="removeInternationalOutgoingCallBarring">
+
+         <wsdl:input message="impl:removeInternationalOutgoingCallBarringRequest" name="removeInternationalOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:removeInternationalOutgoingCallBarringResponse" name="removeInternationalOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setIncomingCallBarring">
+
+         <wsdl:input message="impl:setIncomingCallBarringRequest" name="setIncomingCallBarringRequest"/>
+
+         <wsdl:output message="impl:setIncomingCallBarringResponse" name="setIncomingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setInternationalOutgoingCallBarring">
+
+         <wsdl:input message="impl:setInternationalOutgoingCallBarringRequest" name="setInternationalOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:setInternationalOutgoingCallBarringResponse" name="setInternationalOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setOIRCallidPrivacyEnabled" parameterOrder="in0">
+
+         <wsdl:input message="impl:setOIRCallidPrivacyEnabledRequest" name="setOIRCallidPrivacyEnabledRequest"/>
+
+         <wsdl:output message="impl:setOIRCallidPrivacyEnabledResponse" name="setOIRCallidPrivacyEnabledResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setOutgoingCallBarring">
+
+         <wsdl:input message="impl:setOutgoingCallBarringRequest" name="setOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:setOutgoingCallBarringResponse" name="setOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setRoamingCallBarring">
+
+         <wsdl:input message="impl:setRoamingCallBarringRequest" name="setRoamingCallBarringRequest"/>
+
+         <wsdl:output message="impl:setRoamingCallBarringResponse" name="setRoamingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTIRCallidPrivacyEnabled" parameterOrder="in0">
+
+         <wsdl:input message="impl:setTIRCallidPrivacyEnabledRequest" name="setTIRCallidPrivacyEnabledRequest"/>
+
+         <wsdl:output message="impl:setTIRCallidPrivacyEnabledResponse" name="setTIRCallidPrivacyEnabledResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getIncomingCallBarring">
+
+         <wsdl:input message="impl:getIncomingCallBarringRequest" name="getIncomingCallBarringRequest"/>
+
+         <wsdl:output message="impl:getIncomingCallBarringResponse" name="getIncomingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInternationalOutgoingCallBarring">
+
+         <wsdl:input message="impl:getInternationalOutgoingCallBarringRequest" name="getInternationalOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:getInternationalOutgoingCallBarringResponse" name="getInternationalOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOIRCallidPrivacyEnabled">
+
+         <wsdl:input message="impl:getOIRCallidPrivacyEnabledRequest" name="getOIRCallidPrivacyEnabledRequest"/>
+
+         <wsdl:output message="impl:getOIRCallidPrivacyEnabledResponse" name="getOIRCallidPrivacyEnabledResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutgoingCallBarring">
+
+         <wsdl:input message="impl:getOutgoingCallBarringRequest" name="getOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:getOutgoingCallBarringResponse" name="getOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRoamingCallBarring">
+
+         <wsdl:input message="impl:getRoamingCallBarringRequest" name="getRoamingCallBarringRequest"/>
+
+         <wsdl:output message="impl:getRoamingCallBarringResponse" name="getRoamingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTIRCallidPrivacyEnabled">
+
+         <wsdl:input message="impl:getTIRCallidPrivacyEnabledRequest" name="getTIRCallidPrivacyEnabledRequest"/>
+
+         <wsdl:output message="impl:getTIRCallidPrivacyEnabledResponse" name="getTIRCallidPrivacyEnabledResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExcHomeCountry">
+
+         <wsdl:input message="impl:getExcHomeCountryRequest" name="getExcHomeCountryRequest"/>
+
+         <wsdl:output message="impl:getExcHomeCountryResponse" name="getExcHomeCountryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setExcHomeCountry">
+
+         <wsdl:input message="impl:setExcHomeCountryRequest" name="setExcHomeCountryRequest"/>
+
+         <wsdl:output message="impl:setExcHomeCountryResponse" name="setExcHomeCountryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeExcHomeCountry">
+
+         <wsdl:input message="impl:removeExcHomeCountryRequest" name="removeExcHomeCountryRequest"/>
+
+         <wsdl:output message="impl:removeExcHomeCountryResponse" name="removeExcHomeCountryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeIncomingCallBarring">
+
+         <wsdl:input message="impl:removeIncomingCallBarringRequest" name="removeIncomingCallBarringRequest"/>
+
+         <wsdl:output message="impl:removeIncomingCallBarringResponse" name="removeIncomingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addComDivRules" parameterOrder="in0">
+
+         <wsdl:input message="impl:addComDivRulesRequest" name="addComDivRulesRequest"/>
+
+         <wsdl:output message="impl:addComDivRulesResponse" name="addComDivRulesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getComDivRules">
+
+         <wsdl:input message="impl:getComDivRulesRequest" name="getComDivRulesRequest"/>
+
+         <wsdl:output message="impl:getComDivRulesResponse" name="getComDivRulesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteComDivRules">
+
+         <wsdl:input message="impl:deleteComDivRulesRequest" name="deleteComDivRulesRequest"/>
+
+         <wsdl:output message="impl:deleteComDivRulesResponse" name="deleteComDivRulesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOutgoingCallBarring">
+
+         <wsdl:input message="impl:removeOutgoingCallBarringRequest" name="removeOutgoingCallBarringRequest"/>
+
+         <wsdl:output message="impl:removeOutgoingCallBarringResponse" name="removeOutgoingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRoamingCallBarring">
+
+         <wsdl:input message="impl:removeRoamingCallBarringRequest" name="removeRoamingCallBarringRequest"/>
+
+         <wsdl:output message="impl:removeRoamingCallBarringResponse" name="removeRoamingCallBarringResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="IMSUserService" type="impl:IMSUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="removeInternationalOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeInternationalOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeInternationalOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setIncomingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setIncomingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setIncomingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setInternationalOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setInternationalOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setInternationalOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setOIRCallidPrivacyEnabled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setOIRCallidPrivacyEnabledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setOIRCallidPrivacyEnabledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setRoamingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setRoamingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setRoamingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTIRCallidPrivacyEnabled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setTIRCallidPrivacyEnabledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setTIRCallidPrivacyEnabledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getIncomingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getIncomingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getIncomingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getInternationalOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getInternationalOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getInternationalOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOIRCallidPrivacyEnabled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOIRCallidPrivacyEnabledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOIRCallidPrivacyEnabledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRoamingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRoamingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRoamingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTIRCallidPrivacyEnabled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTIRCallidPrivacyEnabledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTIRCallidPrivacyEnabledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExcHomeCountry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getExcHomeCountryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getExcHomeCountryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setExcHomeCountry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setExcHomeCountryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setExcHomeCountryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeExcHomeCountry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeExcHomeCountryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeExcHomeCountryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeIncomingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeIncomingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeIncomingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addComDivRules">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addComDivRulesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addComDivRulesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getComDivRules">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getComDivRulesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getComDivRulesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteComDivRules">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteComDivRulesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteComDivRulesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOutgoingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeOutgoingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeOutgoingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRoamingCallBarring">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeRoamingCallBarringRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeRoamingCallBarringResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ims.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="IMSUserIFService">
+
+      <wsdl:port binding="impl:IMSUserService" name="IMSUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/IMSUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

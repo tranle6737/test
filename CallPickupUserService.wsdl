@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="callpickup.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="callpickup.ws.nortelnetworks.com" xmlns:intf="callpickup.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns232="group.data.ws.nortelnetworks.com" xmlns:tns40="core.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="callpickup.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="LocaleNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="TimeZoneNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="group.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="callpickup.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="GroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="callpickup.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CPUGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns232:GroupNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUAgentNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:UserNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCPUAgentNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CPUAgentNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUPilotDNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUAliasNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCPUAliasNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CPUAliasNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUDNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns40:DNNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCPUDNNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CPUDNNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUPilotDNDO">
+    <complexContent>
+     <extension base="impl:CPUPilotDNNaturalKeyDO">
+      <sequence>
+       <element name="aliases" nillable="true" type="impl:ArrayOfCPUAliasNaturalKeyDO"/>
+       <element name="dirNumbers" nillable="true" type="impl:ArrayOfCPUDNNaturalKeyDO"/>
+       <element name="locale" nillable="true" type="tns2:LocaleNaturalKeyDO"/>
+       <element name="timezone" nillable="true" type="tns2:TimeZoneNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUGroupDO">
+    <complexContent>
+     <extension base="impl:CPUGroupNaturalKeyDO">
+      <sequence>
+       <element name="agents" nillable="true" type="impl:ArrayOfCPUAgentNaturalKeyDO"/>
+       <element name="allowActiveSubscriptions" type="xsd:boolean"/>
+       <element name="groupDisplayName" nillable="true" type="soapenc:string"/>
+       <element name="maxCallQueueSize" type="xsd:int"/>
+       <element name="maxGroupSize" type="xsd:int"/>
+       <element name="pilotDN" nillable="true" type="impl:CPUPilotDNDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCPUGroupDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CPUGroupDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUAgentStatusDO">
+    <sequence>
+     <element name="agentName" nillable="true" type="impl:CPUAgentNaturalKeyDO"/>
+     <element name="agentStatus" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfCPUAgentStatusDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CPUAgentStatusDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CPUGroupInfoDO">
+    <complexContent>
+     <extension base="impl:CPUGroupNaturalKeyDO">
+      <sequence>
+       <element name="agents" nillable="true" type="impl:ArrayOfCPUAgentNaturalKeyDO"/>
+       <element name="allowActiveSubscriptions" type="xsd:boolean"/>
+       <element name="maxCallQueueSize" type="xsd:int"/>
+       <element name="maxGroupSize" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="core.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="callpickup.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="DNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllCPUGroupsByAgentRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeCPUAgentRequest">
+
+      <wsdl:part name="in0" type="impl:CPUGroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:CPUAgentNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyCPUGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyCPUGroupRequest">
+
+      <wsdl:part name="in0" type="impl:CPUGroupInfoDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCPUGroupAdminRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getCPUGroupByAgentRequest">
+
+      <wsdl:part name="in0" type="impl:CPUGroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeCPUAgentResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="isCPUGroupAdminResponse">
+
+      <wsdl:part name="isCPUGroupAdminReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCPUGroupsByAgentResponse">
+
+      <wsdl:part name="getAllCPUGroupsByAgentReturn" type="impl:ArrayOfCPUGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCPUGroupsByAdminResponse">
+
+      <wsdl:part name="getAllCPUGroupsByAdminReturn" type="impl:ArrayOfCPUGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCPUGroupByAgentResponse">
+
+      <wsdl:part name="getCPUGroupByAgentReturn" type="impl:CPUGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCPUGroupsByAdminRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addCPUAgentRequest">
+
+      <wsdl:part name="in0" type="impl:CPUGroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:CPUAgentNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCPUAgentStatusByGroupRequest">
+
+      <wsdl:part name="in0" type="impl:CPUGroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCPUAgentStatusByGroupResponse">
+
+      <wsdl:part name="getCPUAgentStatusByGroupReturn" type="impl:ArrayOfCPUAgentStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCPUAgentResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="CPUUserIF">
+
+      <wsdl:operation name="getAllCPUGroupsByAgent">
+
+         <wsdl:input message="impl:getAllCPUGroupsByAgentRequest" name="getAllCPUGroupsByAgentRequest"/>
+
+         <wsdl:output message="impl:getAllCPUGroupsByAgentResponse" name="getAllCPUGroupsByAgentResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCPUGroupsByAdmin">
+
+         <wsdl:input message="impl:getAllCPUGroupsByAdminRequest" name="getAllCPUGroupsByAdminRequest"/>
+
+         <wsdl:output message="impl:getAllCPUGroupsByAdminResponse" name="getAllCPUGroupsByAdminResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCPUGroupByAgent" parameterOrder="in0">
+
+         <wsdl:input message="impl:getCPUGroupByAgentRequest" name="getCPUGroupByAgentRequest"/>
+
+         <wsdl:output message="impl:getCPUGroupByAgentResponse" name="getCPUGroupByAgentResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeCPUAgent" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeCPUAgentRequest" name="removeCPUAgentRequest"/>
+
+         <wsdl:output message="impl:removeCPUAgentResponse" name="removeCPUAgentResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCPUGroupAdmin">
+
+         <wsdl:input message="impl:isCPUGroupAdminRequest" name="isCPUGroupAdminRequest"/>
+
+         <wsdl:output message="impl:isCPUGroupAdminResponse" name="isCPUGroupAdminResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCPUAgentStatusByGroup" parameterOrder="in0">
+
+         <wsdl:input message="impl:getCPUAgentStatusByGroupRequest" name="getCPUAgentStatusByGroupRequest"/>
+
+         <wsdl:output message="impl:getCPUAgentStatusByGroupResponse" name="getCPUAgentStatusByGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCPUAgent" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addCPUAgentRequest" name="addCPUAgentRequest"/>
+
+         <wsdl:output message="impl:addCPUAgentResponse" name="addCPUAgentResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCPUGroup" parameterOrder="in0">
+
+         <wsdl:input message="impl:modifyCPUGroupRequest" name="modifyCPUGroupRequest"/>
+
+         <wsdl:output message="impl:modifyCPUGroupResponse" name="modifyCPUGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CallPickupUserService" type="impl:CPUUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAllCPUGroupsByAgent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCPUGroupsByAgentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCPUGroupsByAgentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCPUGroupsByAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCPUGroupsByAdminRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCPUGroupsByAdminResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCPUGroupByAgent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCPUGroupByAgentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCPUGroupByAgentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeCPUAgent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeCPUAgentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeCPUAgentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCPUGroupAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCPUGroupAdminRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCPUGroupAdminResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCPUAgentStatusByGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCPUAgentStatusByGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCPUAgentStatusByGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCPUAgent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCPUAgentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCPUAgentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCPUGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyCPUGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyCPUGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callpickup.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CPUUserIFService">
+
+      <wsdl:port binding="impl:CallPickupUserService" name="CallPickupUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/CallPickupUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

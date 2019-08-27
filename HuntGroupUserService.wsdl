@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="hunting.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="hunting.ws.nortelnetworks.com" xmlns:intf="hunting.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns232="group.data.ws.nortelnetworks.com" xmlns:tns40="core.data.ws.nortelnetworks.com" xmlns:tns70="routing.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="hunting.ws.nortelnetworks.com"/>
+   <import namespace="routing.data.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="UserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="group.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="hunting.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="routing.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="GroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="hunting.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="routing.data.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="HuntAgentNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:UserNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntAgentDO">
+    <complexContent>
+     <extension base="impl:HuntAgentNaturalKeyDO">
+      <sequence>
+       <element name="huntOrder" type="xsd:int"/>
+       <element name="stopHunt" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfHuntAgentDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:HuntAgentDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntAliasNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CfgdaOptionNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="OverflowOptionNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntGroupUserDO">
+    <complexContent>
+     <extension base="tns232:GroupNaturalKeyDO">
+      <sequence>
+       <element name="cfgdaDest" nillable="true" type="impl:HuntAliasNaturalKeyDO"/>
+       <element name="cfgdaOption" nillable="true" type="impl:CfgdaOptionNaturalKeyDO"/>
+       <element name="enableDirectHunting" type="xsd:boolean"/>
+       <element name="overflowDest" nillable="true" type="impl:HuntAliasNaturalKeyDO"/>
+       <element name="overflowOption" nillable="true" type="impl:OverflowOptionNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntGroupTypeNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntPilotDNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfHuntAliasNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:HuntAliasNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntDNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns40:DNNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfHuntDNNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:HuntDNNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntPilotDNDO">
+    <complexContent>
+     <extension base="impl:HuntPilotDNNaturalKeyDO">
+      <sequence>
+       <element name="aliases" nillable="true" type="impl:ArrayOfHuntAliasNaturalKeyDO"/>
+       <element name="dirNumbers" nillable="true" type="impl:ArrayOfHuntDNNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="HuntGroupDO">
+    <complexContent>
+     <extension base="tns232:GroupNaturalKeyDO">
+      <sequence>
+       <element name="alphaTag" nillable="true" type="tns40:AlphaTagNaturalKeyDO"/>
+       <element name="cfgdaDest" nillable="true" type="impl:HuntAliasNaturalKeyDO"/>
+       <element name="cfgdaOption" nillable="true" type="impl:CfgdaOptionNaturalKeyDO"/>
+       <element name="cfgdaTime" type="xsd:int"/>
+       <element name="cos" nillable="true" type="tns70:CosNaturalKeyDO"/>
+       <element name="disableCPL" type="xsd:boolean"/>
+       <element name="enableDirectHunting" type="xsd:boolean"/>
+       <element name="groupType" nillable="true" type="impl:HuntGroupTypeNaturalKeyDO"/>
+       <element name="overflowDest" nillable="true" type="impl:HuntAliasNaturalKeyDO"/>
+       <element name="overflowOption" nillable="true" type="impl:OverflowOptionNaturalKeyDO"/>
+       <element name="pilotDN" nillable="true" type="impl:HuntPilotDNDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfHuntGroupDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:HuntGroupDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="core.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="hunting.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="routing.data.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AlphaTagNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType abstract="true" name="DNNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="routing.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="core.data.ws.nortelnetworks.com"/>
+   <import namespace="hunting.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="group.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CosNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="modifyAgentDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAgentDataRequest">
+
+      <wsdl:part name="in0" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOfHuntAgentDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyHuntGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getHuntGroupsByAgentRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getHuntGroupsByAdminRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAgentsForHuntGroupResponse">
+
+      <wsdl:part name="getAgentsForHuntGroupReturn" type="impl:ArrayOfHuntAgentDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAgentToHuntGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyHuntGroupRequest">
+
+      <wsdl:part name="in0" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:HuntGroupUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAgentFromHuntGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getHuntGroupsByAdminResponse">
+
+      <wsdl:part name="getHuntGroupsByAdminReturn" type="impl:ArrayOfHuntGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAgentsForHuntGroupRequest">
+
+      <wsdl:part name="in0" type="tns232:GroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAgentFromHuntGroupRequest">
+
+      <wsdl:part name="in0" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:HuntAgentNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getHuntGroupsByAgentResponse">
+
+      <wsdl:part name="getHuntGroupsByAgentReturn" type="impl:ArrayOfHuntGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAgentToHuntGroupRequest">
+
+      <wsdl:part name="in0" type="tns232:GroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:HuntAgentDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="HuntGroupUserIF">
+
+      <wsdl:operation name="removeAgentFromHuntGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeAgentFromHuntGroupRequest" name="removeAgentFromHuntGroupRequest"/>
+
+         <wsdl:output message="impl:removeAgentFromHuntGroupResponse" name="removeAgentFromHuntGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAgentsForHuntGroup" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAgentsForHuntGroupRequest" name="getAgentsForHuntGroupRequest"/>
+
+         <wsdl:output message="impl:getAgentsForHuntGroupResponse" name="getAgentsForHuntGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAgentData" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyAgentDataRequest" name="modifyAgentDataRequest"/>
+
+         <wsdl:output message="impl:modifyAgentDataResponse" name="modifyAgentDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyHuntGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyHuntGroupRequest" name="modifyHuntGroupRequest"/>
+
+         <wsdl:output message="impl:modifyHuntGroupResponse" name="modifyHuntGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getHuntGroupsByAgent">
+
+         <wsdl:input message="impl:getHuntGroupsByAgentRequest" name="getHuntGroupsByAgentRequest"/>
+
+         <wsdl:output message="impl:getHuntGroupsByAgentResponse" name="getHuntGroupsByAgentResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getHuntGroupsByAdmin">
+
+         <wsdl:input message="impl:getHuntGroupsByAdminRequest" name="getHuntGroupsByAdminRequest"/>
+
+         <wsdl:output message="impl:getHuntGroupsByAdminResponse" name="getHuntGroupsByAdminResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAgentToHuntGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addAgentToHuntGroupRequest" name="addAgentToHuntGroupRequest"/>
+
+         <wsdl:output message="impl:addAgentToHuntGroupResponse" name="addAgentToHuntGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="HuntGroupUserService" type="impl:HuntGroupUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="removeAgentFromHuntGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAgentFromHuntGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAgentFromHuntGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAgentsForHuntGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAgentsForHuntGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAgentsForHuntGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAgentData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAgentDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAgentDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyHuntGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyHuntGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyHuntGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getHuntGroupsByAgent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getHuntGroupsByAgentRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getHuntGroupsByAgentResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getHuntGroupsByAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getHuntGroupsByAdminRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getHuntGroupsByAdminResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAgentToHuntGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAgentToHuntGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAgentToHuntGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="hunting.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="HuntGroupUserIFService">
+
+      <wsdl:port binding="impl:HuntGroupUserService" name="HuntGroupUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/HuntGroupUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

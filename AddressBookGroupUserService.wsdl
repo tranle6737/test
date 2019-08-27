@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="addrbook.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="addrbook.ws.nortelnetworks.com" xmlns:intf="addrbook.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns25="addrbook.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.ws.nortelnetworks.com"/>
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="addrbook.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AddrBookGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="AddrBookEntryNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="addrbook.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AddrBookGroupDO">
+    <complexContent>
+     <extension base="tns25:AddrBookGroupNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAddrBookGroupDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AddrBookGroupDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AddressBookEntryDO">
+    <complexContent>
+     <extension base="tns25:AddrBookEntryNaturalKeyDO">
+      <sequence>
+       <element name="buddy" type="xsd:boolean"/>
+       <element name="businessPhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="conferenceURL" nillable="true" type="soapenc:string"/>
+       <element name="emailAddress" nillable="true" type="soapenc:string"/>
+       <element name="fax" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="group" nillable="true" type="tns25:AddrBookGroupNaturalKeyDO"/>
+       <element name="homePhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="mobile" nillable="true" type="soapenc:string"/>
+       <element name="pager" nillable="true" type="soapenc:string"/>
+       <element name="photoURL" nillable="true" type="soapenc:string"/>
+       <element name="primaryContact" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAddressBookEntryDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AddressBookEntryDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AddressBookGroupDetailDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="displayName" nillable="true" type="soapenc:string"/>
+       <element name="entities" nillable="true" type="impl:ArrayOfAddressBookEntryDO"/>
+       <element name="groupName" nillable="true" type="tns25:AddrBookGroupNaturalKeyDO"/>
+       <element name="parentGroupName" nillable="true" type="soapenc:string"/>
+       <element name="presRuleName" nillable="true" type="soapenc:string"/>
+       <element name="presRuleType" nillable="true" type="soapenc:int"/>
+       <element name="subGroups" nillable="true" type="impl:ArrayOfAddressBookGroupDetailDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAddressBookGroupDetailDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AddressBookGroupDetailDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns25_AddrBookGroupNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns25:AddrBookGroupNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAddressBookGroupDetailListResponse">
+
+      <wsdl:part name="getAddressBookGroupDetailListReturn" type="impl:ArrayOfAddressBookGroupDetailDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookGroupRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookGroupNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:AddrBookGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookGroupsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookGroupsRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOf_tns25_AddrBookGroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAddressBookGroupDetailsRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfAddressBookGroupDetailDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAddressBookGroupDetailsResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookGroupsResponse">
+
+      <wsdl:part name="getAddressBookGroupsReturn" type="impl:ArrayOfAddrBookGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookGroupRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookGroupNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookGroupDetailListRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookGroupRequest">
+
+      <wsdl:part name="in0" type="impl:AddrBookGroupDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookGroupsResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="AddressBookGroupUserIF">
+
+      <wsdl:operation name="getAddressBookGroups">
+
+         <wsdl:input message="impl:getAddressBookGroupsRequest" name="getAddressBookGroupsRequest"/>
+
+         <wsdl:output message="impl:getAddressBookGroupsResponse" name="getAddressBookGroupsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookGroup" parameterOrder="in0">
+
+         <wsdl:input message="impl:addAddressBookGroupRequest" name="addAddressBookGroupRequest"/>
+
+         <wsdl:output message="impl:addAddressBookGroupResponse" name="addAddressBookGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookGroup" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAddressBookGroupRequest" name="removeAddressBookGroupRequest"/>
+
+         <wsdl:output message="impl:removeAddressBookGroupResponse" name="removeAddressBookGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressBookGroupDetailList">
+
+         <wsdl:input message="impl:getAddressBookGroupDetailListRequest" name="getAddressBookGroupDetailListRequest"/>
+
+         <wsdl:output message="impl:getAddressBookGroupDetailListResponse" name="getAddressBookGroupDetailListResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookGroups" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAddressBookGroupsRequest" name="removeAddressBookGroupsRequest"/>
+
+         <wsdl:output message="impl:removeAddressBookGroupsResponse" name="removeAddressBookGroupsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyAddressBookGroupRequest" name="modifyAddressBookGroupRequest"/>
+
+         <wsdl:output message="impl:modifyAddressBookGroupResponse" name="modifyAddressBookGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAddressBookGroupDetails" parameterOrder="in0">
+
+         <wsdl:input message="impl:setAddressBookGroupDetailsRequest" name="setAddressBookGroupDetailsRequest"/>
+
+         <wsdl:output message="impl:setAddressBookGroupDetailsResponse" name="setAddressBookGroupDetailsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AddressBookGroupUserService" type="impl:AddressBookGroupUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAddressBookGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressBookGroupsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressBookGroupsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAddressBookGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAddressBookGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAddressBookGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAddressBookGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressBookGroupDetailList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressBookGroupDetailListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressBookGroupDetailListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAddressBookGroupsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAddressBookGroupsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAddressBookGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAddressBookGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAddressBookGroupDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setAddressBookGroupDetailsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setAddressBookGroupDetailsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AddressBookGroupUserIFService">
+
+      <wsdl:port binding="impl:AddressBookGroupUserService" name="AddressBookGroupUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/AddressBookGroupUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

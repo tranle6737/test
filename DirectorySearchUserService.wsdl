@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="ldap.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="ldap.ws.nortelnetworks.com" xmlns:intf="ldap.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns31="gab.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="ldap.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="StartStopDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="start" type="xsd:int"/>
+       <element name="stop" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="gab.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="ldap.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="SearchCriteriaDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="searchCriteria" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GABNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GABEntryDO">
+    <complexContent>
+     <extension base="tns31:GABNaturalKeyDO">
+      <sequence>
+       <element name="buddy" type="xsd:boolean"/>
+       <element name="businessPhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="conferenceURL" nillable="true" type="soapenc:string"/>
+       <element name="emailAddress" nillable="true" type="soapenc:string"/>
+       <element name="fax" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="homePhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="mobile" nillable="true" type="soapenc:string"/>
+       <element name="pager" nillable="true" type="soapenc:string"/>
+       <element name="photoURL" nillable="true" type="soapenc:string"/>
+       <element name="primaryContact" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="ldap.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns31_GABEntryDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns31:GABEntryDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="searchLDAPByFirstNameRangeRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+      <wsdl:part name="in1" type="tns2:StartStopDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByLastNameRangeResponse">
+
+      <wsdl:part name="searchLDAPByLastNameRangeReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByLastNameResponse">
+
+      <wsdl:part name="searchLDAPByLastNameReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByNameRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByNameRangeResponse">
+
+      <wsdl:part name="searchLDAPByNameRangeReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByPhoneNumberRangeResponse">
+
+      <wsdl:part name="searchLDAPByPhoneNumberRangeReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByUserNameResponse">
+
+      <wsdl:part name="searchLDAPByUserNameReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByFirstNameResponse">
+
+      <wsdl:part name="searchLDAPByFirstNameReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByLastNameRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByLastNameRangeRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+      <wsdl:part name="in1" type="tns2:StartStopDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByNameRangeRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+      <wsdl:part name="in1" type="tns2:StartStopDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByPhoneNumberRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByPhoneNumberResponse">
+
+      <wsdl:part name="searchLDAPByPhoneNumberReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByUserNameRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByNameResponse">
+
+      <wsdl:part name="searchLDAPByNameReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByFirstNameRangeResponse">
+
+      <wsdl:part name="searchLDAPByFirstNameRangeReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByPhoneNumberRangeRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+      <wsdl:part name="in1" type="tns2:StartStopDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByUserNameRangeResponse">
+
+      <wsdl:part name="searchLDAPByUserNameRangeReturn" type="impl:ArrayOf_tns31_GABEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByUserNameRangeRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+      <wsdl:part name="in1" type="tns2:StartStopDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchLDAPByFirstNameRequest">
+
+      <wsdl:part name="in0" type="tns31:SearchCriteriaDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DirectorySearchUserIF">
+
+      <wsdl:operation name="searchLDAPByUserName" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchLDAPByUserNameRequest" name="searchLDAPByUserNameRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByUserNameResponse" name="searchLDAPByUserNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByLastName" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchLDAPByLastNameRequest" name="searchLDAPByLastNameRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByLastNameResponse" name="searchLDAPByLastNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByName" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchLDAPByNameRequest" name="searchLDAPByNameRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByNameResponse" name="searchLDAPByNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByPhoneNumber" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchLDAPByPhoneNumberRequest" name="searchLDAPByPhoneNumberRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByPhoneNumberResponse" name="searchLDAPByPhoneNumberResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByFirstName" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchLDAPByFirstNameRequest" name="searchLDAPByFirstNameRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByFirstNameResponse" name="searchLDAPByFirstNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByUserNameRange" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchLDAPByUserNameRangeRequest" name="searchLDAPByUserNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByUserNameRangeResponse" name="searchLDAPByUserNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByNameRange" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchLDAPByNameRangeRequest" name="searchLDAPByNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByNameRangeResponse" name="searchLDAPByNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByFirstNameRange" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchLDAPByFirstNameRangeRequest" name="searchLDAPByFirstNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByFirstNameRangeResponse" name="searchLDAPByFirstNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByLastNameRange" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchLDAPByLastNameRangeRequest" name="searchLDAPByLastNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByLastNameRangeResponse" name="searchLDAPByLastNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByPhoneNumberRange" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchLDAPByPhoneNumberRangeRequest" name="searchLDAPByPhoneNumberRangeRequest"/>
+
+         <wsdl:output message="impl:searchLDAPByPhoneNumberRangeResponse" name="searchLDAPByPhoneNumberRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DirectorySearchUserService" type="impl:DirectorySearchUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="searchLDAPByUserName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByUserNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByUserNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByLastNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByLastNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByPhoneNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByPhoneNumberRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByPhoneNumberResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByFirstNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByFirstNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByUserNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByUserNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByUserNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByFirstNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByFirstNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByFirstNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByLastNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByLastNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByLastNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchLDAPByPhoneNumberRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchLDAPByPhoneNumberRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchLDAPByPhoneNumberRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="ldap.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DirectorySearchUserIFService">
+
+      <wsdl:port binding="impl:DirectorySearchUserService" name="DirectorySearchUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/DirectorySearchUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

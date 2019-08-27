@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="webcollaboration.ws.genband.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="webcollaboration.ws.genband.com" xmlns:intf="webcollaboration.ws.genband.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="webcollaboration.ws.genband.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="webcollaboration.ws.genband.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="WebCollabHostTokenDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="appId" type="xsd:int"/>
+       <element name="approvalScopeID" nillable="true" type="soapenc:string"/>
+       <element name="approvalSignature" nillable="true" type="soapenc:string"/>
+       <element name="expires" type="xsd:long"/>
+       <element name="salt" nillable="true" type="soapenc:string"/>
+       <element name="sharingScopeID" nillable="true" type="soapenc:string"/>
+       <element name="sharingSignature" nillable="true" type="soapenc:string"/>
+       <element name="userID" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabUrlDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="collabUrl" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabMaxNumOfPartDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="maxNumOfParticipants" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabUserDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="confExtnNumber" nillable="true" type="soapenc:string"/>
+       <element name="roomUrl" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabScopeDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="sharingScopeId" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabTokenDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="appId" type="xsd:int"/>
+       <element name="expires" type="xsd:long"/>
+       <element name="salt" nillable="true" type="soapenc:string"/>
+       <element name="serverKey" nillable="true" type="soapenc:string"/>
+       <element name="sessionToken" nillable="true" type="soapenc:string"/>
+       <element name="settingsToken" nillable="true" type="soapenc:string"/>
+       <element name="sharingScopeID" nillable="true" type="soapenc:string"/>
+       <element name="sharingSignature" nillable="true" type="soapenc:string"/>
+       <element name="sharingToken" nillable="true" type="soapenc:string"/>
+       <element name="userID" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WebCollabGuestNameDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getWebCollabURLRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForHostResponse">
+
+      <wsdl:part name="generateTokenForHostReturn" type="impl:WebCollabHostTokenDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForPremiumRequest">
+
+      <wsdl:part name="in0" type="impl:WebCollabScopeDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabMaxNumOfPartRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabURLResponse">
+
+      <wsdl:part name="getWebCollabURLReturn" type="impl:WebCollabUrlDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeWebCollabSessionDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForHostRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabHostURLResponse">
+
+      <wsdl:part name="getWebCollabHostURLReturn" type="impl:WebCollabUrlDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabMaxNumOfPartResponse">
+
+      <wsdl:part name="getWebCollabMaxNumOfPartReturn" type="impl:WebCollabMaxNumOfPartDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForPremiumResponse">
+
+      <wsdl:part name="generateTokenForPremiumReturn" type="impl:WebCollabTokenDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabUserDataResponse">
+
+      <wsdl:part name="getWebCollabUserDataReturn" type="impl:WebCollabUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeWebCollabSessionDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabHostURLRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForGuestRequest">
+
+      <wsdl:part name="in0" type="impl:WebCollabGuestNameDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="generateTokenForGuestResponse">
+
+      <wsdl:part name="generateTokenForGuestReturn" type="impl:WebCollabTokenDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabUserDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:portType name="WebCollabUserIF">
+
+      <wsdl:operation name="generateTokenForHost">
+
+         <wsdl:input message="impl:generateTokenForHostRequest" name="generateTokenForHostRequest"/>
+
+         <wsdl:output message="impl:generateTokenForHostResponse" name="generateTokenForHostResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabURL">
+
+         <wsdl:input message="impl:getWebCollabURLRequest" name="getWebCollabURLRequest"/>
+
+         <wsdl:output message="impl:getWebCollabURLResponse" name="getWebCollabURLResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabMaxNumOfPart">
+
+         <wsdl:input message="impl:getWebCollabMaxNumOfPartRequest" name="getWebCollabMaxNumOfPartRequest"/>
+
+         <wsdl:output message="impl:getWebCollabMaxNumOfPartResponse" name="getWebCollabMaxNumOfPartResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeWebCollabSessionData">
+
+         <wsdl:input message="impl:removeWebCollabSessionDataRequest" name="removeWebCollabSessionDataRequest"/>
+
+         <wsdl:output message="impl:removeWebCollabSessionDataResponse" name="removeWebCollabSessionDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabUserData">
+
+         <wsdl:input message="impl:getWebCollabUserDataRequest" name="getWebCollabUserDataRequest"/>
+
+         <wsdl:output message="impl:getWebCollabUserDataResponse" name="getWebCollabUserDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabHostURL">
+
+         <wsdl:input message="impl:getWebCollabHostURLRequest" name="getWebCollabHostURLRequest"/>
+
+         <wsdl:output message="impl:getWebCollabHostURLResponse" name="getWebCollabHostURLResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="generateTokenForPremium" parameterOrder="in0">
+
+         <wsdl:input message="impl:generateTokenForPremiumRequest" name="generateTokenForPremiumRequest"/>
+
+         <wsdl:output message="impl:generateTokenForPremiumResponse" name="generateTokenForPremiumResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="generateTokenForGuest" parameterOrder="in0">
+
+         <wsdl:input message="impl:generateTokenForGuestRequest" name="generateTokenForGuestRequest"/>
+
+         <wsdl:output message="impl:generateTokenForGuestResponse" name="generateTokenForGuestResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebCollabUserService" type="impl:WebCollabUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="generateTokenForHost">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="generateTokenForHostRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="generateTokenForHostResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabURL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWebCollabURLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWebCollabURLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabMaxNumOfPart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWebCollabMaxNumOfPartRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWebCollabMaxNumOfPartResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeWebCollabSessionData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeWebCollabSessionDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeWebCollabSessionDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabUserData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWebCollabUserDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWebCollabUserDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabHostURL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWebCollabHostURLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWebCollabHostURLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="generateTokenForPremium">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="generateTokenForPremiumRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="generateTokenForPremiumResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="generateTokenForGuest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="generateTokenForGuestRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="generateTokenForGuestResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="webcollaboration.ws.genband.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WebCollabUserIFService">
+
+      <wsdl:port binding="impl:WebCollabUserService" name="WebCollabUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/WebCollabUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

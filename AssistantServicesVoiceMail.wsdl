@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="assistantservicesvoicemail.opi.ims.nortelnetworks.com" xmlns:intf="assistantservicesvoicemail.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllAssistantsHavingVoiceMailForUserResponse">
+
+      <wsdl:part name="getAllAssistantsHavingVoiceMailForUserReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAssistedUserVoiceMailRedirectedAssistantRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAssistedUserVoiceMailRedirectedAssistantResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserVoiceMailRedirectedAssistantResponse">
+
+      <wsdl:part name="getAssistedUserVoiceMailRedirectedAssistantReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAssistantsHavingVoiceMailForUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAssistedUserVoiceMailRedirectedAssistantRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserVoiceMailRedirectedAssistantRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAssistedUserVoiceMailRedirectedAssistantResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="AssistantServicesVoiceMailMgr">
+
+      <wsdl:operation name="setAssistedUserVoiceMailRedirectedAssistant" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:setAssistedUserVoiceMailRedirectedAssistantRequest" name="setAssistedUserVoiceMailRedirectedAssistantRequest"/>
+
+         <wsdl:output message="impl:setAssistedUserVoiceMailRedirectedAssistantResponse" name="setAssistedUserVoiceMailRedirectedAssistantResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserVoiceMailRedirectedAssistant" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAssistedUserVoiceMailRedirectedAssistantRequest" name="getAssistedUserVoiceMailRedirectedAssistantRequest"/>
+
+         <wsdl:output message="impl:getAssistedUserVoiceMailRedirectedAssistantResponse" name="getAssistedUserVoiceMailRedirectedAssistantResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAssistedUserVoiceMailRedirectedAssistant" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAssistedUserVoiceMailRedirectedAssistantRequest" name="removeAssistedUserVoiceMailRedirectedAssistantRequest"/>
+
+         <wsdl:output message="impl:removeAssistedUserVoiceMailRedirectedAssistantResponse" name="removeAssistedUserVoiceMailRedirectedAssistantResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAssistantsHavingVoiceMailForUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAllAssistantsHavingVoiceMailForUserRequest" name="getAllAssistantsHavingVoiceMailForUserRequest"/>
+
+         <wsdl:output message="impl:getAllAssistantsHavingVoiceMailForUserResponse" name="getAllAssistantsHavingVoiceMailForUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AssistantServicesVoiceMail" type="impl:AssistantServicesVoiceMailMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="setAssistedUserVoiceMailRedirectedAssistant">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setAssistedUserVoiceMailRedirectedAssistantRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setAssistedUserVoiceMailRedirectedAssistantResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserVoiceMailRedirectedAssistant">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssistedUserVoiceMailRedirectedAssistantRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssistedUserVoiceMailRedirectedAssistantResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAssistedUserVoiceMailRedirectedAssistant">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAssistedUserVoiceMailRedirectedAssistantRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAssistedUserVoiceMailRedirectedAssistantResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAssistantsHavingVoiceMailForUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllAssistantsHavingVoiceMailForUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllAssistantsHavingVoiceMailForUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assistantservicesvoicemail.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AssistantServicesVoiceMailMgrService">
+
+      <wsdl:port binding="impl:AssistantServicesVoiceMail" name="AssistantServicesVoiceMail">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/AssistantServicesVoiceMail"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

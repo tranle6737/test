@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="user.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="user.opi.ims.nortelnetworks.com" xmlns:intf="user.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:tns20="basepasswordpolicy.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="basepasswordpolicy.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="PasswordPolicy">
+    <complexContent>
+     <extension base="tns20:BasePasswordPolicy">
+      <sequence>
+       <element name="initReset" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="basepasswordpolicy.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BasePasswordPolicy">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="lockoutDuration" nillable="true" type="soapenc:int"/>
+       <element name="maxFailedLogin" nillable="true" type="soapenc:int"/>
+       <element name="minCharacters" nillable="true" type="soapenc:int"/>
+       <element name="minDigits" nillable="true" type="soapenc:int"/>
+       <element name="minLength" nillable="true" type="soapenc:int"/>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPasswordPolicyDescriptionRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordPolicyDescriptionResponse">
+
+      <wsdl:part name="getPasswordPolicyDescriptionReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordPolicyByUserNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordPolicyDescriptionByLocaleRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordPolicyDescriptionByLocaleResponse">
+
+      <wsdl:part name="getPasswordPolicyDescriptionByLocaleReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordPolicyByUserNameResponse">
+
+      <wsdl:part name="getPasswordPolicyByUserNameReturn" type="tns126:PasswordPolicy"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserPasswordPolicyMgr">
+
+      <wsdl:operation name="getPasswordPolicyDescriptionByLocale" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getPasswordPolicyDescriptionByLocaleRequest" name="getPasswordPolicyDescriptionByLocaleRequest"/>
+
+         <wsdl:output message="impl:getPasswordPolicyDescriptionByLocaleResponse" name="getPasswordPolicyDescriptionByLocaleResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPasswordPolicyDescription" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPasswordPolicyDescriptionRequest" name="getPasswordPolicyDescriptionRequest"/>
+
+         <wsdl:output message="impl:getPasswordPolicyDescriptionResponse" name="getPasswordPolicyDescriptionResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPasswordPolicyByUserName" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPasswordPolicyByUserNameRequest" name="getPasswordPolicyByUserNameRequest"/>
+
+         <wsdl:output message="impl:getPasswordPolicyByUserNameResponse" name="getPasswordPolicyByUserNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserPwd" type="impl:UserPasswordPolicyMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getPasswordPolicyDescriptionByLocale">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPasswordPolicyDescriptionByLocaleRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPasswordPolicyDescriptionByLocaleResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPasswordPolicyDescription">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPasswordPolicyDescriptionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPasswordPolicyDescriptionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPasswordPolicyByUserName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPasswordPolicyByUserNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPasswordPolicyByUserNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserPasswordPolicyMgrService">
+
+      <wsdl:port binding="impl:UserPwd" name="UserPwd">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UserPwd"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

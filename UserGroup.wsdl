@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="user.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="user.opi.ims.nortelnetworks.com" xmlns:intf="user.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:tns150="group.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="user.opi.ims.nortelnetworks.com"/>
+   <import namespace="group.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="NameValue">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="value" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="user.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="group.opi.ims.nortelnetworks.com"/>
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns126_NameValue">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns126:NameValue[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns150_GroupType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns150:GroupType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns150_Group">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns150:Group[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="group.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="user.opi.ims.nortelnetworks.com"/>
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="GroupType">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="attributes" nillable="true" type="impl:ArrayOf_tns126_NameValue"/>
+       <element name="hasAttributes" type="xsd:boolean"/>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="serviceBased" type="xsd:boolean"/>
+       <element name="serviceName" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Group">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="aliases" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="types" nillable="true" type="impl:ArrayOf_tns150_GroupType"/>
+       <element name="users" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllGroupTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllGroupTypesResponse">
+
+      <wsdl:part name="getAllGroupTypesReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGroupsByUsersByTypeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserGroupsRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserGroupsResponse">
+
+      <wsdl:part name="getUserGroupsReturn" type="impl:ArrayOf_tns150_Group"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getGroupsByUsersByTypeResponse">
+
+      <wsdl:part name="getGroupsByUsersByTypeReturn" type="impl:ArrayOf_tns150_Group"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserGroupMgr">
+
+      <wsdl:operation name="getGroupsByUsersByType" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getGroupsByUsersByTypeRequest" name="getGroupsByUsersByTypeRequest"/>
+
+         <wsdl:output message="impl:getGroupsByUsersByTypeResponse" name="getGroupsByUsersByTypeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserGroups" parameterOrder="in0">
+
+         <wsdl:input message="impl:getUserGroupsRequest" name="getUserGroupsRequest"/>
+
+         <wsdl:output message="impl:getUserGroupsResponse" name="getUserGroupsResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllGroupTypes">
+
+         <wsdl:input message="impl:getAllGroupTypesRequest" name="getAllGroupTypesRequest"/>
+
+         <wsdl:output message="impl:getAllGroupTypesResponse" name="getAllGroupTypesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserGroup" type="impl:UserGroupMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getGroupsByUsersByType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getGroupsByUsersByTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getGroupsByUsersByTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserGroupsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserGroupsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllGroupTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllGroupTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllGroupTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserGroupMgrService">
+
+      <wsdl:port binding="impl:UserGroup" name="UserGroup">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UserGroup"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="presauth.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="presauth.ws.nortelnetworks.com" xmlns:intf="presauth.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns25="addrbook.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="presauth.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="presauth.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="PresenceAuthorizationUserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PresenceAuthorizationUserDO">
+    <complexContent>
+     <extension base="impl:PresenceAuthorizationUserNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPresenceAuthorizationUserDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PresenceAuthorizationUserDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns25_AddrBookGroupNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns25:AddrBookGroupNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPresenceAuthorizationUserNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PresenceAuthorizationUserNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PresenceAuthorizationUserDetailDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="groupList" nillable="true" type="impl:ArrayOf_tns25_AddrBookGroupNaturalKeyDO"/>
+       <element name="presRuleName" nillable="true" type="soapenc:string"/>
+       <element name="presRuleType" nillable="true" type="soapenc:int"/>
+       <element name="watchers" nillable="true" type="impl:ArrayOfPresenceAuthorizationUserNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPresenceAuthorizationUserDetailDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PresenceAuthorizationUserDetailDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="addrbook.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="presauth.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AddrBookGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="setPresRuleDetailsResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addBannedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAuthorizedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeBannedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addBannedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllPoliteBlockedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAuthorizedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPresRuleDetailsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAuthorizedUsersResponse">
+
+      <wsdl:part name="getAuthorizedUsersReturn" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAuthorizedUsersRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPresRuleDetailsRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPresenceAuthorizationUserDetailDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBannedUsersResponse">
+
+      <wsdl:part name="getBannedUsersReturn" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllBannedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPoliteBlockedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBannedUsersRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeBannedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPresRuleDetailsResponse">
+
+      <wsdl:part name="getPresRuleDetailsReturn" type="impl:ArrayOfPresenceAuthorizationUserDetailDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAuthorizedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllAuthorizedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAuthorizedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllBannedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAuthorizedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPoliteBlockedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addPoliteBlockedUsersRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllAuthorizedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addPoliteBlockedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllPoliteBlockedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAuthorizedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removePoliteBlockedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getBannedUsersRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addPoliteBlockedUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPoliteBlockedUsersResponse">
+
+      <wsdl:part name="getPoliteBlockedUsersReturn" type="impl:ArrayOfPresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBannedUsersResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removePoliteBlockedUserRequest">
+
+      <wsdl:part name="in0" type="impl:PresenceAuthorizationUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PresenceAuthorizationUserIF">
+
+      <wsdl:operation name="addBannedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:addBannedUserRequest" name="addBannedUserRequest"/>
+
+         <wsdl:output message="impl:addBannedUserResponse" name="addBannedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBannedUsers" parameterOrder="in0">
+
+         <wsdl:input message="impl:addBannedUsersRequest" name="addBannedUsersRequest"/>
+
+         <wsdl:output message="impl:addBannedUsersResponse" name="addBannedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBannedUsers">
+
+         <wsdl:input message="impl:getBannedUsersRequest" name="getBannedUsersRequest"/>
+
+         <wsdl:output message="impl:getBannedUsersResponse" name="getBannedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeBannedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeBannedUserRequest" name="removeBannedUserRequest"/>
+
+         <wsdl:output message="impl:removeBannedUserResponse" name="removeBannedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllBannedUsers">
+
+         <wsdl:input message="impl:removeAllBannedUsersRequest" name="removeAllBannedUsersRequest"/>
+
+         <wsdl:output message="impl:removeAllBannedUsersResponse" name="removeAllBannedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAuthorizedUsers" parameterOrder="in0">
+
+         <wsdl:input message="impl:addAuthorizedUsersRequest" name="addAuthorizedUsersRequest"/>
+
+         <wsdl:output message="impl:addAuthorizedUsersResponse" name="addAuthorizedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAuthorizedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:addAuthorizedUserRequest" name="addAuthorizedUserRequest"/>
+
+         <wsdl:output message="impl:addAuthorizedUserResponse" name="addAuthorizedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAuthorizedUsers">
+
+         <wsdl:input message="impl:getAuthorizedUsersRequest" name="getAuthorizedUsersRequest"/>
+
+         <wsdl:output message="impl:getAuthorizedUsersResponse" name="getAuthorizedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAuthorizedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAuthorizedUserRequest" name="removeAuthorizedUserRequest"/>
+
+         <wsdl:output message="impl:removeAuthorizedUserResponse" name="removeAuthorizedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllAuthorizedUsers">
+
+         <wsdl:input message="impl:removeAllAuthorizedUsersRequest" name="removeAllAuthorizedUsersRequest"/>
+
+         <wsdl:output message="impl:removeAllAuthorizedUsersResponse" name="removeAllAuthorizedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPoliteBlockedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:addPoliteBlockedUserRequest" name="addPoliteBlockedUserRequest"/>
+
+         <wsdl:output message="impl:addPoliteBlockedUserResponse" name="addPoliteBlockedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPoliteBlockedUsers" parameterOrder="in0">
+
+         <wsdl:input message="impl:addPoliteBlockedUsersRequest" name="addPoliteBlockedUsersRequest"/>
+
+         <wsdl:output message="impl:addPoliteBlockedUsersResponse" name="addPoliteBlockedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPoliteBlockedUsers">
+
+         <wsdl:input message="impl:getPoliteBlockedUsersRequest" name="getPoliteBlockedUsersRequest"/>
+
+         <wsdl:output message="impl:getPoliteBlockedUsersResponse" name="getPoliteBlockedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removePoliteBlockedUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:removePoliteBlockedUserRequest" name="removePoliteBlockedUserRequest"/>
+
+         <wsdl:output message="impl:removePoliteBlockedUserResponse" name="removePoliteBlockedUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllPoliteBlockedUsers">
+
+         <wsdl:input message="impl:removeAllPoliteBlockedUsersRequest" name="removeAllPoliteBlockedUsersRequest"/>
+
+         <wsdl:output message="impl:removeAllPoliteBlockedUsersResponse" name="removeAllPoliteBlockedUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPresRuleDetails" parameterOrder="in0">
+
+         <wsdl:input message="impl:setPresRuleDetailsRequest" name="setPresRuleDetailsRequest"/>
+
+         <wsdl:output message="impl:setPresRuleDetailsResponse" name="setPresRuleDetailsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPresRuleDetails">
+
+         <wsdl:input message="impl:getPresRuleDetailsRequest" name="getPresRuleDetailsRequest"/>
+
+         <wsdl:output message="impl:getPresRuleDetailsResponse" name="getPresRuleDetailsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PresenceAuthorizationUserService" type="impl:PresenceAuthorizationUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addBannedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBannedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBannedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBannedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBannedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBannedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBannedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBannedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBannedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeBannedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeBannedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeBannedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllBannedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllBannedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllBannedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAuthorizedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAuthorizedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAuthorizedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAuthorizedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAuthorizedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAuthorizedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAuthorizedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAuthorizedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAuthorizedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAuthorizedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAuthorizedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAuthorizedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllAuthorizedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllAuthorizedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllAuthorizedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPoliteBlockedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPoliteBlockedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPoliteBlockedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPoliteBlockedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPoliteBlockedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPoliteBlockedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPoliteBlockedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPoliteBlockedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPoliteBlockedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removePoliteBlockedUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removePoliteBlockedUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removePoliteBlockedUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllPoliteBlockedUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllPoliteBlockedUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllPoliteBlockedUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPresRuleDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPresRuleDetailsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPresRuleDetailsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPresRuleDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPresRuleDetailsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPresRuleDetailsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="presauth.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PresenceAuthorizationUserIFService">
+
+      <wsdl:port binding="impl:PresenceAuthorizationUserService" name="PresenceAuthorizationUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/PresenceAuthorizationUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

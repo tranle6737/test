@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="opi.ims.nortelnetworks.com" xmlns:intf="opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns132="baseroute.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="Condition">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="type" nillable="true" type="soapenc:string"/>
+       <element name="values" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCondition">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Condition[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="NameValue">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="value" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfNameValue">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:NameValue[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="RoutesAction">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Route">
+    <complexContent>
+     <extension base="tns132:BaseRoute">
+      <sequence>
+       <element name="callTrigger" type="xsd:boolean"/>
+       <element name="conditions" nillable="true" type="impl:ArrayOfCondition"/>
+       <element name="exceptions" nillable="true" type="impl:ArrayOfCondition"/>
+       <element name="imTrigger" type="xsd:boolean"/>
+       <element name="parms" nillable="true" type="impl:ArrayOfNameValue"/>
+       <element name="routeName" nillable="true" type="soapenc:string"/>
+       <element name="termAction" nillable="true" type="impl:RoutesAction"/>
+       <element name="triggerActions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfRoute">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:Route[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CallDestination">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="destinations" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="enabled" type="xsd:boolean"/>
+       <element name="instantMessage" nillable="true" type="soapenc:string"/>
+       <element name="numOfRings" nillable="true" type="soapenc:int"/>
+       <element name="ringBackTone" nillable="true" type="soapenc:string"/>
+       <element name="webPush" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCallDestination">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CallDestination[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="CallAction">
+    <complexContent>
+     <extension base="impl:RoutesAction">
+      <sequence>
+       <element name="busyDestination" nillable="true" type="impl:CallDestination"/>
+       <element maxOccurs="unbounded" name="callDestination" nillable="true" type="impl:CallDestination"/>
+       <element name="destinations" nillable="true" type="impl:ArrayOfCallDestination"/>
+       <element name="noAnswerDestination" nillable="true" type="impl:CallDestination"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DetailedCallAction">
+    <complexContent>
+     <extension base="impl:CallAction">
+      <sequence>
+       <element name="notLoggedInDestination" nillable="true" type="impl:CallDestination"/>
+       <element name="unreachableDestination" nillable="true" type="impl:CallDestination"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GenericTermAction">
+    <complexContent>
+     <extension base="impl:RoutesAction">
+      <sequence>
+       <element name="nameValues" nillable="true" type="impl:ArrayOfNameValue"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RejectReasonAction">
+    <complexContent>
+     <extension base="impl:GenericTermAction">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DetailedCondition">
+    <complexContent>
+     <extension base="impl:Condition">
+      <sequence>
+       <element name="exception" type="xsd:boolean"/>
+       <element name="inclusive" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="baseroute.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BaseRoute">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="isActive" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="removeRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOfRoute"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="impl:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRouteNamesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllRouteParmNamesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getRouteNamesResponse">
+
+      <wsdl:part name="getRouteNamesReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getRoutesResponse">
+
+      <wsdl:part name="getRoutesReturn" type="impl:ArrayOfRoute"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getRouteResponse">
+
+      <wsdl:part name="getRouteReturn" type="impl:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllRouteParmNamesResponse">
+
+      <wsdl:part name="getAllRouteParmNamesReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activateRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activateRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserRouteMgr">
+
+      <wsdl:operation name="getRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getRouteRequest" name="getRouteRequest"/>
+
+         <wsdl:output message="impl:getRouteResponse" name="getRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:setActiveRoutesRequest" name="setActiveRoutesRequest"/>
+
+         <wsdl:output message="impl:setActiveRoutesResponse" name="setActiveRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:reorderRoutesRequest" name="reorderRoutesRequest"/>
+
+         <wsdl:output message="impl:reorderRoutesResponse" name="reorderRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addRouteRequest" name="addRouteRequest"/>
+
+         <wsdl:output message="impl:addRouteResponse" name="addRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addRoutesRequest" name="addRoutesRequest"/>
+
+         <wsdl:output message="impl:addRoutesResponse" name="addRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyRoute" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:modifyRouteRequest" name="modifyRouteRequest"/>
+
+         <wsdl:output message="impl:modifyRouteResponse" name="modifyRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeRouteRequest" name="removeRouteRequest"/>
+
+         <wsdl:output message="impl:removeRouteResponse" name="removeRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAllRoutesRequest" name="removeAllRoutesRequest"/>
+
+         <wsdl:output message="impl:removeAllRoutesResponse" name="removeAllRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:getRoutesRequest" name="getRoutesRequest"/>
+
+         <wsdl:output message="impl:getRoutesResponse" name="getRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRouteNames" parameterOrder="in0">
+
+         <wsdl:input message="impl:getRouteNamesRequest" name="getRouteNamesRequest"/>
+
+         <wsdl:output message="impl:getRouteNamesResponse" name="getRouteNamesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:activateRoutesRequest" name="activateRoutesRequest"/>
+
+         <wsdl:output message="impl:activateRoutesResponse" name="activateRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:deactivateRoutesRequest" name="deactivateRoutesRequest"/>
+
+         <wsdl:output message="impl:deactivateRoutesResponse" name="deactivateRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRouteParmNames">
+
+         <wsdl:input message="impl:getAllRouteParmNamesRequest" name="getAllRouteParmNamesRequest"/>
+
+         <wsdl:output message="impl:getAllRouteParmNamesResponse" name="getAllRouteParmNamesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="Routes" type="impl:UserRouteMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setActiveRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setActiveRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reorderRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reorderRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getRouteNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getRouteNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getRouteNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="activateRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="activateRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deactivateRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deactivateRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllRouteParmNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllRouteParmNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllRouteParmNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserRouteMgrService">
+
+      <wsdl:port binding="impl:Routes" name="Routes">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/Routes"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

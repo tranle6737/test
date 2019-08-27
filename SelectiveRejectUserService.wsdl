@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="selreject.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="selreject.ws.nortelnetworks.com" xmlns:intf="selreject.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="selreject.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="selreject.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BarredEntryNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfBarredEntryNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:BarredEntryNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="removeIncomingSelectiveRejectEntryRequest">
+
+      <wsdl:part name="in0" type="impl:BarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOutgoingSelectiveRejectEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addOutgoingSelectiveRejectEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addIncomingSelectiveRejectEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllIncomingSelectiveRejectEntriesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addIncomingSelectiveRejectEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addOutgoingSelectiveRejectEntriesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfBarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addIncomingSelectiveRejectEntriesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfBarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllOutgoingSelectiveRejectEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutgoingSelectiveRejectEntriesResponse">
+
+      <wsdl:part name="getOutgoingSelectiveRejectEntriesReturn" type="impl:ArrayOfBarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllOutgoingSelectiveRejectEntriesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addIncomingSelectiveRejectEntryRequest">
+
+      <wsdl:part name="in0" type="impl:BarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getIncomingSelectiveRejectEntriesResponse">
+
+      <wsdl:part name="getIncomingSelectiveRejectEntriesReturn" type="impl:ArrayOfBarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeIncomingSelectiveRejectEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addOutgoingSelectiveRejectEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getIncomingSelectiveRejectEntriesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllIncomingSelectiveRejectEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addOutgoingSelectiveRejectEntryRequest">
+
+      <wsdl:part name="in0" type="impl:BarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeOutgoingSelectiveRejectEntryRequest">
+
+      <wsdl:part name="in0" type="impl:BarredEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getOutgoingSelectiveRejectEntriesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SelectiveRejectUserIF">
+
+      <wsdl:operation name="addOutgoingSelectiveRejectEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:addOutgoingSelectiveRejectEntryRequest" name="addOutgoingSelectiveRejectEntryRequest"/>
+
+         <wsdl:output message="impl:addOutgoingSelectiveRejectEntryResponse" name="addOutgoingSelectiveRejectEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addIncomingSelectiveRejectEntries" parameterOrder="in0">
+
+         <wsdl:input message="impl:addIncomingSelectiveRejectEntriesRequest" name="addIncomingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:addIncomingSelectiveRejectEntriesResponse" name="addIncomingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getIncomingSelectiveRejectEntries">
+
+         <wsdl:input message="impl:getIncomingSelectiveRejectEntriesRequest" name="getIncomingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:getIncomingSelectiveRejectEntriesResponse" name="getIncomingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeIncomingSelectiveRejectEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeIncomingSelectiveRejectEntryRequest" name="removeIncomingSelectiveRejectEntryRequest"/>
+
+         <wsdl:output message="impl:removeIncomingSelectiveRejectEntryResponse" name="removeIncomingSelectiveRejectEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllIncomingSelectiveRejectEntries">
+
+         <wsdl:input message="impl:removeAllIncomingSelectiveRejectEntriesRequest" name="removeAllIncomingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:removeAllIncomingSelectiveRejectEntriesResponse" name="removeAllIncomingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addOutgoingSelectiveRejectEntries" parameterOrder="in0">
+
+         <wsdl:input message="impl:addOutgoingSelectiveRejectEntriesRequest" name="addOutgoingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:addOutgoingSelectiveRejectEntriesResponse" name="addOutgoingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutgoingSelectiveRejectEntries">
+
+         <wsdl:input message="impl:getOutgoingSelectiveRejectEntriesRequest" name="getOutgoingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:getOutgoingSelectiveRejectEntriesResponse" name="getOutgoingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOutgoingSelectiveRejectEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeOutgoingSelectiveRejectEntryRequest" name="removeOutgoingSelectiveRejectEntryRequest"/>
+
+         <wsdl:output message="impl:removeOutgoingSelectiveRejectEntryResponse" name="removeOutgoingSelectiveRejectEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllOutgoingSelectiveRejectEntries">
+
+         <wsdl:input message="impl:removeAllOutgoingSelectiveRejectEntriesRequest" name="removeAllOutgoingSelectiveRejectEntriesRequest"/>
+
+         <wsdl:output message="impl:removeAllOutgoingSelectiveRejectEntriesResponse" name="removeAllOutgoingSelectiveRejectEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addIncomingSelectiveRejectEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:addIncomingSelectiveRejectEntryRequest" name="addIncomingSelectiveRejectEntryRequest"/>
+
+         <wsdl:output message="impl:addIncomingSelectiveRejectEntryResponse" name="addIncomingSelectiveRejectEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SelectiveRejectUserService" type="impl:SelectiveRejectUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addOutgoingSelectiveRejectEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addOutgoingSelectiveRejectEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addOutgoingSelectiveRejectEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addIncomingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addIncomingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addIncomingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getIncomingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getIncomingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getIncomingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeIncomingSelectiveRejectEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeIncomingSelectiveRejectEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeIncomingSelectiveRejectEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllIncomingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllIncomingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllIncomingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addOutgoingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addOutgoingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addOutgoingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOutgoingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOutgoingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOutgoingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeOutgoingSelectiveRejectEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeOutgoingSelectiveRejectEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeOutgoingSelectiveRejectEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllOutgoingSelectiveRejectEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllOutgoingSelectiveRejectEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllOutgoingSelectiveRejectEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addIncomingSelectiveRejectEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addIncomingSelectiveRejectEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addIncomingSelectiveRejectEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="selreject.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SelectiveRejectUserIFService">
+
+      <wsdl:port binding="impl:SelectiveRejectUserService" name="SelectiveRejectUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/SelectiveRejectUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

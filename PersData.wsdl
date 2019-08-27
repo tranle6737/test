@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="user.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="user.opi.ims.nortelnetworks.com" xmlns:intf="user.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="user.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="user.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="UserPersonalData">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="aliases" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="cellPhone" nillable="true" type="soapenc:string"/>
+       <element name="dirNumbers" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="email" nillable="true" type="soapenc:string"/>
+       <element name="fax" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="homePhone" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="locale" nillable="true" type="soapenc:string"/>
+       <element name="location" nillable="true" type="soapenc:string"/>
+       <element name="officePhone" nillable="true" type="soapenc:string"/>
+       <element name="pager" nillable="true" type="soapenc:string"/>
+       <element name="passwdExpiry" type="xsd:long"/>
+       <element name="timezone" nillable="true" type="soapenc:string"/>
+       <element name="username" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="modifyUserPersonalDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="changePasswordRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserTypeResponse">
+
+      <wsdl:part name="getUserTypeReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserTypeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserPersonalDataResponse">
+
+      <wsdl:part name="getUserPersonalDataReturn" type="impl:UserPersonalData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyUserPersonalDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:UserPersonalData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changePasswordResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserPersonalDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserPersonalDataMgr">
+
+      <wsdl:operation name="modifyUserPersonalData" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyUserPersonalDataRequest" name="modifyUserPersonalDataRequest"/>
+
+         <wsdl:output message="impl:modifyUserPersonalDataResponse" name="modifyUserPersonalDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserPersonalData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getUserPersonalDataRequest" name="getUserPersonalDataRequest"/>
+
+         <wsdl:output message="impl:getUserPersonalDataResponse" name="getUserPersonalDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:changePasswordRequest" name="changePasswordRequest"/>
+
+         <wsdl:output message="impl:changePasswordResponse" name="changePasswordResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserType" parameterOrder="in0">
+
+         <wsdl:input message="impl:getUserTypeRequest" name="getUserTypeRequest"/>
+
+         <wsdl:output message="impl:getUserTypeResponse" name="getUserTypeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticateUser" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:authenticateUserRequest" name="authenticateUserRequest"/>
+
+         <wsdl:output message="impl:authenticateUserResponse" name="authenticateUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PersData" type="impl:UserPersonalDataMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="modifyUserPersonalData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyUserPersonalDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyUserPersonalDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserPersonalData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserPersonalDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserPersonalDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changePassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changePasswordRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changePasswordResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticateUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticateUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticateUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserPersonalDataMgrService">
+
+      <wsdl:port binding="impl:PersData" name="PersData">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/PersData"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

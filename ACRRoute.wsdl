@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="acrroute.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="acrroute.opi.ims.nortelnetworks.com" xmlns:intf="acrroute.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:tns131="agprroute.opi.ims.nortelnetworks.com" xmlns:tns132="baseroute.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="acrroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="agprroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="baseroute.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="acrroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="agprroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BaseRoute">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="isActive" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="agprroute.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="acrroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="AGPRRoute">
+    <complexContent>
+     <extension base="tns132:BaseRoute">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="acrroute.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="agprroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ACRRoute">
+    <complexContent>
+     <extension base="tns131:AGPRRoute">
+      <sequence>
+       <element name="rejectReason" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getACRRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setACRRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ACRRoute"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getACRRouteResponse">
+
+      <wsdl:part name="getACRRouteReturn" type="impl:ACRRoute"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setACRRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ACRRouteMgr">
+
+      <wsdl:operation name="setACRRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:setACRRouteRequest" name="setACRRouteRequest"/>
+
+         <wsdl:output message="impl:setACRRouteResponse" name="setACRRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getACRRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:getACRRouteRequest" name="getACRRouteRequest"/>
+
+         <wsdl:output message="impl:getACRRouteResponse" name="getACRRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ACRRoute" type="impl:ACRRouteMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="setACRRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setACRRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setACRRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getACRRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getACRRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getACRRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="acrroute.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ACRRouteMgrService">
+
+      <wsdl:port binding="impl:ACRRoute" name="ACRRoute">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/ACRRoute"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

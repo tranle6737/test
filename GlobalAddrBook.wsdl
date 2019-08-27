@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="opi.ims.nortelnetworks.com" xmlns:intf="opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="AddressBookEntry">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="buddy" nillable="true" type="soapenc:boolean"/>
+       <element name="businessPhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="city" nillable="true" type="soapenc:string"/>
+       <element name="emailAddress" nillable="true" type="soapenc:string"/>
+       <element name="extension" nillable="true" type="soapenc:string"/>
+       <element name="fax" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="group" nillable="true" type="soapenc:string"/>
+       <element name="homeAddress" nillable="true" type="soapenc:string"/>
+       <element name="homePhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="mobile" nillable="true" type="soapenc:string"/>
+       <element name="nickName" nillable="true" type="soapenc:string"/>
+       <element name="notes" nillable="true" type="soapenc:string"/>
+       <element name="pager" nillable="true" type="soapenc:string"/>
+       <element name="primaryContact" nillable="true" type="soapenc:string"/>
+       <element name="state" nillable="true" type="soapenc:string"/>
+       <element name="webAddress" nillable="true" type="soapenc:string"/>
+       <element name="zip" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="FullAddressBookEntry">
+    <complexContent>
+     <extension base="impl:AddressBookEntry">
+      <sequence>
+       <element name="photoURL" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfFullAddressBookEntry">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:FullAddressBookEntry[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="searchGABByUserNameRangeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="xsd:int"/>
+
+      <wsdl:part name="in3" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByUserNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByPhoneNumberRangeResponse">
+
+      <wsdl:part name="searchGABByPhoneNumberRangeReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByLastNameResponse">
+
+      <wsdl:part name="searchGABByLastNameReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isGabEnabledResponse">
+
+      <wsdl:part name="isGabEnabledReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByNameResponse">
+
+      <wsdl:part name="searchGABByNameReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByFirstNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByFirstNameRangeResponse">
+
+      <wsdl:part name="searchGABByFirstNameRangeReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByNameRangeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="xsd:int"/>
+
+      <wsdl:part name="in3" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByPhoneNumberResponse">
+
+      <wsdl:part name="searchGABByPhoneNumberReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByLastNameRangeResponse">
+
+      <wsdl:part name="searchGABByLastNameRangeReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByUserNameRangeResponse">
+
+      <wsdl:part name="searchGABByUserNameRangeReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="impl:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByFirstNameRangeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="xsd:int"/>
+
+      <wsdl:part name="in3" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByLastNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByLastNameRangeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="xsd:int"/>
+
+      <wsdl:part name="in3" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByFirstNameResponse">
+
+      <wsdl:part name="searchGABByFirstNameReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByUserNameResponse">
+
+      <wsdl:part name="searchGABByUserNameReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByPhoneNumberRangeRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="xsd:int"/>
+
+      <wsdl:part name="in3" type="xsd:int"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByPhoneNumberRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isGabEnabledRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="searchGABByNameRangeResponse">
+
+      <wsdl:part name="searchGABByNameRangeReturn" type="impl:ArrayOfFullAddressBookEntry"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GlobalAddressBookMgr">
+
+      <wsdl:operation name="searchGABByUserName" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchGABByUserNameRequest" name="searchGABByUserNameRequest"/>
+
+         <wsdl:output message="impl:searchGABByUserNameResponse" name="searchGABByUserNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByFirstName" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchGABByFirstNameRequest" name="searchGABByFirstNameRequest"/>
+
+         <wsdl:output message="impl:searchGABByFirstNameResponse" name="searchGABByFirstNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByLastName" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchGABByLastNameRequest" name="searchGABByLastNameRequest"/>
+
+         <wsdl:output message="impl:searchGABByLastNameResponse" name="searchGABByLastNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByFirstNameRange" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:searchGABByFirstNameRangeRequest" name="searchGABByFirstNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchGABByFirstNameRangeResponse" name="searchGABByFirstNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByLastNameRange" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:searchGABByLastNameRangeRequest" name="searchGABByLastNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchGABByLastNameRangeResponse" name="searchGABByLastNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByNameRange" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:searchGABByNameRangeRequest" name="searchGABByNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchGABByNameRangeResponse" name="searchGABByNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByPhoneNumberRange" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:searchGABByPhoneNumberRangeRequest" name="searchGABByPhoneNumberRangeRequest"/>
+
+         <wsdl:output message="impl:searchGABByPhoneNumberRangeResponse" name="searchGABByPhoneNumberRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByUserNameRange" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:searchGABByUserNameRangeRequest" name="searchGABByUserNameRangeRequest"/>
+
+         <wsdl:output message="impl:searchGABByUserNameRangeResponse" name="searchGABByUserNameRangeResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isGabEnabled">
+
+         <wsdl:input message="impl:isGabEnabledRequest" name="isGabEnabledRequest"/>
+
+         <wsdl:output message="impl:isGabEnabledResponse" name="isGabEnabledResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByPhoneNumber" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchGABByPhoneNumberRequest" name="searchGABByPhoneNumberRequest"/>
+
+         <wsdl:output message="impl:searchGABByPhoneNumberResponse" name="searchGABByPhoneNumberResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByName" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:searchGABByNameRequest" name="searchGABByNameRequest"/>
+
+         <wsdl:output message="impl:searchGABByNameResponse" name="searchGABByNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GlobalAddrBook" type="impl:GlobalAddressBookMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="searchGABByUserName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByUserNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByUserNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByFirstNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByFirstNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByLastNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByLastNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByFirstNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByFirstNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByFirstNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByLastNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByLastNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByLastNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByPhoneNumberRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByPhoneNumberRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByPhoneNumberRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByUserNameRange">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByUserNameRangeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByUserNameRangeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isGabEnabled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isGabEnabledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isGabEnabledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByPhoneNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByPhoneNumberRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByPhoneNumberResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchGABByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchGABByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchGABByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GlobalAddressBookMgrService">
+
+      <wsdl:port binding="impl:GlobalAddrBook" name="GlobalAddrBook">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/GlobalAddrBook"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

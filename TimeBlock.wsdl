@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="opi.ims.nortelnetworks.com" xmlns:intf="opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_boolean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:boolean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="TimeBlock">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="days" nillable="true" type="impl:ArrayOf_soapenc_boolean"/>
+       <element name="startTime" nillable="true" type="soapenc:string"/>
+       <element name="stopTime" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfTimeBlock">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:TimeBlock[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="TimeBlockGroup">
+    <complexContent>
+     <extension base="impl:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="timeBlocks" nillable="true" type="impl:ArrayOfTimeBlock"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfTimeBlockGroup">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:TimeBlockGroup[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getTimeBlockGroupByNameRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:TimeBlockGroup"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTimeBlockGroupsByUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeTimeBlockGroupsRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeTimeBlockGroupsResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="impl:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addTimeBlockGroupsResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeTimeBlockGroupResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getTimeBlockGroupsByUserResponse">
+
+      <wsdl:part name="getTimeBlockGroupsByUserReturn" type="impl:ArrayOfTimeBlockGroup"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addTimeBlockGroupsRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOfTimeBlockGroup"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTimeBlockGroupByNameResponse">
+
+      <wsdl:part name="getTimeBlockGroupByNameReturn" type="impl:TimeBlockGroup"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyTimeBlockGroupRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:TimeBlockGroup"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserTimeMgr">
+
+      <wsdl:operation name="addTimeBlockGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addTimeBlockGroupRequest" name="addTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:addTimeBlockGroupResponse" name="addTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addTimeBlockGroups" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addTimeBlockGroupsRequest" name="addTimeBlockGroupsRequest"/>
+
+         <wsdl:output message="impl:addTimeBlockGroupsResponse" name="addTimeBlockGroupsResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeTimeBlockGroup" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeTimeBlockGroupRequest" name="removeTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:removeTimeBlockGroupResponse" name="removeTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeTimeBlockGroups" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeTimeBlockGroupsRequest" name="removeTimeBlockGroupsRequest"/>
+
+         <wsdl:output message="impl:removeTimeBlockGroupsResponse" name="removeTimeBlockGroupsResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyTimeBlockGroup" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:modifyTimeBlockGroupRequest" name="modifyTimeBlockGroupRequest"/>
+
+         <wsdl:output message="impl:modifyTimeBlockGroupResponse" name="modifyTimeBlockGroupResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTimeBlockGroupByName" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getTimeBlockGroupByNameRequest" name="getTimeBlockGroupByNameRequest"/>
+
+         <wsdl:output message="impl:getTimeBlockGroupByNameResponse" name="getTimeBlockGroupByNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTimeBlockGroupsByUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:getTimeBlockGroupsByUserRequest" name="getTimeBlockGroupsByUserRequest"/>
+
+         <wsdl:output message="impl:getTimeBlockGroupsByUserResponse" name="getTimeBlockGroupsByUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TimeBlock" type="impl:UserTimeMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addTimeBlockGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addTimeBlockGroupsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addTimeBlockGroupsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeTimeBlockGroups">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeTimeBlockGroupsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeTimeBlockGroupsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyTimeBlockGroup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyTimeBlockGroupRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyTimeBlockGroupResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTimeBlockGroupByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTimeBlockGroupByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTimeBlockGroupByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTimeBlockGroupsByUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTimeBlockGroupsByUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTimeBlockGroupsByUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserTimeMgrService">
+
+      <wsdl:port binding="impl:TimeBlock" name="TimeBlock">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/TimeBlock"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

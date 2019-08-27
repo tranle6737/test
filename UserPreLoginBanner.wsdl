@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="userpreloginbanner.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="userpreloginbanner.opi.ims.nortelnetworks.com" xmlns:intf="userpreloginbanner.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPreLoginBannerResponse">
+
+      <wsdl:part name="getPreLoginBannerReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPreLoginBannerRequest">
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserPreLoginBannerMgr">
+
+      <wsdl:operation name="getPreLoginBanner">
+
+         <wsdl:input message="impl:getPreLoginBannerRequest" name="getPreLoginBannerRequest"/>
+
+         <wsdl:output message="impl:getPreLoginBannerResponse" name="getPreLoginBannerResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserPreLoginBanner" type="impl:UserPreLoginBannerMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getPreLoginBanner">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPreLoginBannerRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userpreloginbanner.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPreLoginBannerResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userpreloginbanner.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="userpreloginbanner.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserPreLoginBannerMgrService">
+
+      <wsdl:port binding="impl:UserPreLoginBanner" name="UserPreLoginBanner">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UserPreLoginBanner"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

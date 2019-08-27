@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="addrbook.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="addrbook.ws.nortelnetworks.com" xmlns:intf="addrbook.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns25="addrbook.data.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.ws.nortelnetworks.com"/>
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="addrbook.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AddrBookEntryNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="AddrBookGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="addrbook.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="addrbook.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AddressBookEntryDO">
+    <complexContent>
+     <extension base="tns25:AddrBookEntryNaturalKeyDO">
+      <sequence>
+       <element name="buddy" type="xsd:boolean"/>
+       <element name="businessPhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="conferenceURL" nillable="true" type="soapenc:string"/>
+       <element name="emailAddress" nillable="true" type="soapenc:string"/>
+       <element name="fax" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="group" nillable="true" type="tns25:AddrBookGroupNaturalKeyDO"/>
+       <element name="homePhoneNumber" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="mobile" nillable="true" type="soapenc:string"/>
+       <element name="pager" nillable="true" type="soapenc:string"/>
+       <element name="photoURL" nillable="true" type="soapenc:string"/>
+       <element name="primaryContact" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfAddressBookEntryDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AddressBookEntryDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns25_AddrBookEntryNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns25:AddrBookEntryNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="makeBuddyResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookEntryRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookEntryNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:AddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeUserAddressBookRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookEntryRequest">
+
+      <wsdl:part name="in0" type="impl:AddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBuddiesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getBuddiesResponse">
+
+      <wsdl:part name="getBuddiesReturn" type="impl:ArrayOf_tns25_AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookEntriesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOf_tns25_AddrBookEntryNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOfAddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="makeBuddyRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookResponse">
+
+      <wsdl:part name="getAddressBookReturn" type="impl:ArrayOfAddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeBuddyResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookEntriesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfAddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAddressBookEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookEntriesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOf_tns25_AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookEntryResponse">
+
+      <wsdl:part name="getAddressBookEntryReturn" type="impl:AddressBookEntryDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAddressBookEntryResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookEntryRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeUserAddressBookResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressBookEntryRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeBuddyRequest">
+
+      <wsdl:part name="in0" type="tns25:AddrBookEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAddressBookEntriesResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="AddressBookUserIF">
+
+      <wsdl:operation name="getAddressBook">
+
+         <wsdl:input message="impl:getAddressBookRequest" name="getAddressBookRequest"/>
+
+         <wsdl:output message="impl:getAddressBookResponse" name="getAddressBookResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:addAddressBookEntryRequest" name="addAddressBookEntryRequest"/>
+
+         <wsdl:output message="impl:addAddressBookEntryResponse" name="addAddressBookEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookEntries" parameterOrder="in0">
+
+         <wsdl:input message="impl:addAddressBookEntriesRequest" name="addAddressBookEntriesRequest"/>
+
+         <wsdl:output message="impl:addAddressBookEntriesResponse" name="addAddressBookEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookEntry" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyAddressBookEntryRequest" name="modifyAddressBookEntryRequest"/>
+
+         <wsdl:output message="impl:modifyAddressBookEntryResponse" name="modifyAddressBookEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookEntries" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyAddressBookEntriesRequest" name="modifyAddressBookEntriesRequest"/>
+
+         <wsdl:output message="impl:modifyAddressBookEntriesResponse" name="modifyAddressBookEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAddressBookEntryRequest" name="removeAddressBookEntryRequest"/>
+
+         <wsdl:output message="impl:removeAddressBookEntryResponse" name="removeAddressBookEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookEntries" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeAddressBookEntriesRequest" name="removeAddressBookEntriesRequest"/>
+
+         <wsdl:output message="impl:removeAddressBookEntriesResponse" name="removeAddressBookEntriesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeUserAddressBook">
+
+         <wsdl:input message="impl:removeUserAddressBookRequest" name="removeUserAddressBookRequest"/>
+
+         <wsdl:output message="impl:removeUserAddressBookResponse" name="removeUserAddressBookResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressBookEntry" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAddressBookEntryRequest" name="getAddressBookEntryRequest"/>
+
+         <wsdl:output message="impl:getAddressBookEntryResponse" name="getAddressBookEntryResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBuddies">
+
+         <wsdl:input message="impl:getBuddiesRequest" name="getBuddiesRequest"/>
+
+         <wsdl:output message="impl:getBuddiesResponse" name="getBuddiesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeBuddy" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeBuddyRequest" name="removeBuddyRequest"/>
+
+         <wsdl:output message="impl:removeBuddyResponse" name="removeBuddyResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="makeBuddy" parameterOrder="in0">
+
+         <wsdl:input message="impl:makeBuddyRequest" name="makeBuddyRequest"/>
+
+         <wsdl:output message="impl:makeBuddyResponse" name="makeBuddyResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AddressBookUserService" type="impl:AddressBookUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAddressBook">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressBookRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressBookResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAddressBookEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAddressBookEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAddressBookEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAddressBookEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAddressBookEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAddressBookEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAddressBookEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAddressBookEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAddressBookEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAddressBookEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAddressBookEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAddressBookEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAddressBookEntries">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAddressBookEntriesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAddressBookEntriesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeUserAddressBook">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeUserAddressBookRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeUserAddressBookResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressBookEntry">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressBookEntryRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressBookEntryResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBuddies">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBuddiesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBuddiesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeBuddy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeBuddyRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeBuddyResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="makeBuddy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="makeBuddyRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="makeBuddyResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="addrbook.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AddressBookUserIFService">
+
+      <wsdl:port binding="impl:AddressBookUserService" name="AddressBookUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/AddressBookUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="assisteduserroutes.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="assisteduserroutes.opi.ims.nortelnetworks.com" xmlns:intf="assisteduserroutes.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:tns132="baseroute.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="assisteduserroutes.opi.ims.nortelnetworks.com"/>
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="Condition">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="type" nillable="true" type="soapenc:string"/>
+       <element name="values" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="NameValue">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+       <element name="value" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RoutesAction">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Route">
+    <complexContent>
+     <extension base="tns132:BaseRoute">
+      <sequence>
+       <element name="callTrigger" type="xsd:boolean"/>
+       <element name="conditions" nillable="true" type="impl:ArrayOf_tns126_Condition"/>
+       <element name="exceptions" nillable="true" type="impl:ArrayOf_tns126_Condition"/>
+       <element name="imTrigger" type="xsd:boolean"/>
+       <element name="parms" nillable="true" type="impl:ArrayOf_tns126_NameValue"/>
+       <element name="routeName" nillable="true" type="soapenc:string"/>
+       <element name="termAction" nillable="true" type="tns126:RoutesAction"/>
+       <element name="triggerActions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CallDestination">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="destinations" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="enabled" type="xsd:boolean"/>
+       <element name="instantMessage" nillable="true" type="soapenc:string"/>
+       <element name="numOfRings" nillable="true" type="soapenc:int"/>
+       <element name="ringBackTone" nillable="true" type="soapenc:string"/>
+       <element name="webPush" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CallAction">
+    <complexContent>
+     <extension base="tns126:RoutesAction">
+      <sequence>
+       <element name="busyDestination" nillable="true" type="tns126:CallDestination"/>
+       <element maxOccurs="unbounded" name="callDestination" nillable="true" type="tns126:CallDestination"/>
+       <element name="destinations" nillable="true" type="impl:ArrayOf_tns126_CallDestination"/>
+       <element name="noAnswerDestination" nillable="true" type="tns126:CallDestination"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DetailedCallAction">
+    <complexContent>
+     <extension base="tns126:CallAction">
+      <sequence>
+       <element name="notLoggedInDestination" nillable="true" type="tns126:CallDestination"/>
+       <element name="unreachableDestination" nillable="true" type="tns126:CallDestination"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GenericTermAction">
+    <complexContent>
+     <extension base="tns126:RoutesAction">
+      <sequence>
+       <element name="nameValues" nillable="true" type="impl:ArrayOf_tns126_NameValue"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="RejectReasonAction">
+    <complexContent>
+     <extension base="tns126:GenericTermAction">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="DetailedCondition">
+    <complexContent>
+     <extension base="tns126:Condition">
+      <sequence>
+       <element name="exception" type="xsd:boolean"/>
+       <element name="inclusive" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="baseroute.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="assisteduserroutes.opi.ims.nortelnetworks.com"/>
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BaseRoute">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="isActive" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="assisteduserroutes.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="baseroute.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns126_Condition">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns126:Condition[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns126_NameValue">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns126:NameValue[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns126_Route">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns126:Route[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns126_CallDestination">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns126:CallDestination[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="isDefaultAssistantServicesRouteActivatedResponse">
+
+      <wsdl:part name="isDefaultAssistantServicesRouteActivatedReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAssistedUserRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeDefaultAssistantServicesRouteSettingRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAssistedUserRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="tns126:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activateDefaultAssistantServicesRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setDefaultAssistantServicesRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setDefaultAssistantServicesRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isDefaultAssistantServicesRouteActivatedRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="activateDefaultAssistantServicesRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateDefaultAssistantServicesRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="activateAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRoutesResponse">
+
+      <wsdl:part name="getAssistedUserRoutesReturn" type="impl:ArrayOf_tns126_Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAssistedUserRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAssistedUserRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRouteNamesResponse">
+
+      <wsdl:part name="getAssistedUserRouteNamesReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="impl:ArrayOf_tns126_Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeDefaultAssistantServicesRouteSettingResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getDefaultAssistantServicesRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRouteResponse">
+
+      <wsdl:part name="getAssistedUserRouteReturn" type="tns126:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activateAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRouteNamesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateDefaultAssistantServicesRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAssistedUserRouteRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+      <wsdl:part name="in2" type="soapenc:string"/>
+
+      <wsdl:part name="in3" type="tns126:Route"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAssistedUserRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setActiveAssistedUserRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllAssistedUserRoutesRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDefaultAssistantServicesRouteResponse">
+
+      <wsdl:part name="getDefaultAssistantServicesRouteReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AssistedUserRouteMgr">
+
+      <wsdl:operation name="isDefaultAssistantServicesRouteActivated" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:isDefaultAssistantServicesRouteActivatedRequest" name="isDefaultAssistantServicesRouteActivatedRequest"/>
+
+         <wsdl:output message="impl:isDefaultAssistantServicesRouteActivatedResponse" name="isDefaultAssistantServicesRouteActivatedResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeDefaultAssistantServicesRouteSetting" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeDefaultAssistantServicesRouteSettingRequest" name="removeDefaultAssistantServicesRouteSettingRequest"/>
+
+         <wsdl:output message="impl:removeDefaultAssistantServicesRouteSettingResponse" name="removeDefaultAssistantServicesRouteSettingResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setDefaultAssistantServicesRoute" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:setDefaultAssistantServicesRouteRequest" name="setDefaultAssistantServicesRouteRequest"/>
+
+         <wsdl:output message="impl:setDefaultAssistantServicesRouteResponse" name="setDefaultAssistantServicesRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDefaultAssistantServicesRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getDefaultAssistantServicesRouteRequest" name="getDefaultAssistantServicesRouteRequest"/>
+
+         <wsdl:output message="impl:getDefaultAssistantServicesRouteResponse" name="getDefaultAssistantServicesRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAssistedUserRoute" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:addAssistedUserRouteRequest" name="addAssistedUserRouteRequest"/>
+
+         <wsdl:output message="impl:addAssistedUserRouteResponse" name="addAssistedUserRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAssistedUserRoutes" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:addAssistedUserRoutesRequest" name="addAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:addAssistedUserRoutesResponse" name="addAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAssistedUserRoute" parameterOrder="in0 in1 in2 in3">
+
+         <wsdl:input message="impl:modifyAssistedUserRouteRequest" name="modifyAssistedUserRouteRequest"/>
+
+         <wsdl:output message="impl:modifyAssistedUserRouteResponse" name="modifyAssistedUserRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateDefaultAssistantServicesRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:activateDefaultAssistantServicesRouteRequest" name="activateDefaultAssistantServicesRouteRequest"/>
+
+         <wsdl:output message="impl:activateDefaultAssistantServicesRouteResponse" name="activateDefaultAssistantServicesRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAssistedUserRoute" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:removeAssistedUserRouteRequest" name="removeAssistedUserRouteRequest"/>
+
+         <wsdl:output message="impl:removeAssistedUserRouteResponse" name="removeAssistedUserRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllAssistedUserRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:removeAllAssistedUserRoutesRequest" name="removeAllAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:removeAllAssistedUserRoutesResponse" name="removeAllAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRoute" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:getAssistedUserRouteRequest" name="getAssistedUserRouteRequest"/>
+
+         <wsdl:output message="impl:getAssistedUserRouteResponse" name="getAssistedUserRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRoutes" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getAssistedUserRoutesRequest" name="getAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:getAssistedUserRoutesResponse" name="getAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRouteNames" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:getAssistedUserRouteNamesRequest" name="getAssistedUserRouteNamesRequest"/>
+
+         <wsdl:output message="impl:getAssistedUserRouteNamesResponse" name="getAssistedUserRouteNamesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateAssistedUserRoutes" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:activateAssistedUserRoutesRequest" name="activateAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:activateAssistedUserRoutesResponse" name="activateAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateAssistedUserRoutes" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:deactivateAssistedUserRoutesRequest" name="deactivateAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:deactivateAssistedUserRoutesResponse" name="deactivateAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveAssistedUserRoutes" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:setActiveAssistedUserRoutesRequest" name="setActiveAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:setActiveAssistedUserRoutesResponse" name="setActiveAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderAssistedUserRoutes" parameterOrder="in0 in1 in2">
+
+         <wsdl:input message="impl:reorderAssistedUserRoutesRequest" name="reorderAssistedUserRoutesRequest"/>
+
+         <wsdl:output message="impl:reorderAssistedUserRoutesResponse" name="reorderAssistedUserRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateDefaultAssistantServicesRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:deactivateDefaultAssistantServicesRouteRequest" name="deactivateDefaultAssistantServicesRouteRequest"/>
+
+         <wsdl:output message="impl:deactivateDefaultAssistantServicesRouteResponse" name="deactivateDefaultAssistantServicesRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AssistedUserRoutes" type="impl:AssistedUserRouteMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="isDefaultAssistantServicesRouteActivated">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isDefaultAssistantServicesRouteActivatedRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isDefaultAssistantServicesRouteActivatedResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeDefaultAssistantServicesRouteSetting">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeDefaultAssistantServicesRouteSettingRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeDefaultAssistantServicesRouteSettingResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setDefaultAssistantServicesRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setDefaultAssistantServicesRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setDefaultAssistantServicesRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDefaultAssistantServicesRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDefaultAssistantServicesRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDefaultAssistantServicesRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAssistedUserRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAssistedUserRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAssistedUserRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAssistedUserRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAssistedUserRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAssistedUserRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateDefaultAssistantServicesRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="activateDefaultAssistantServicesRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="activateDefaultAssistantServicesRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAssistedUserRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAssistedUserRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAssistedUserRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssistedUserRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssistedUserRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAssistedUserRouteNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAssistedUserRouteNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAssistedUserRouteNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activateAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="activateAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="activateAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deactivateAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deactivateAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setActiveAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setActiveAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setActiveAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderAssistedUserRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reorderAssistedUserRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reorderAssistedUserRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateDefaultAssistantServicesRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deactivateDefaultAssistantServicesRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deactivateDefaultAssistantServicesRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="assisteduserroutes.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AssistedUserRouteMgrService">
+
+      <wsdl:port binding="impl:AssistedUserRoutes" name="AssistedUserRoutes">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/AssistedUserRoutes"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

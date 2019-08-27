@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="callscreening.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="callscreening.ws.nortelnetworks.com" xmlns:intf="callscreening.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="callscreening.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="callscreening.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CallTypeStatusDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="international" type="xsd:boolean"/>
+       <element name="internationalExcludingHC" type="xsd:boolean"/>
+       <element name="local" type="xsd:boolean"/>
+       <element name="longDistance" type="xsd:boolean"/>
+       <element name="longDistanceInterRateArea" type="xsd:boolean"/>
+       <element name="longDistanceIntraRateArea" type="xsd:boolean"/>
+       <element name="premium" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataResponse">
+
+      <wsdl:part name="getSubsProvisionedCallTypeBasedDataReturn" type="impl:CallTypeStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataResponse">
+
+      <wsdl:part name="getAdminProvisionedCallTypeBasedDataReturn" type="impl:CallTypeStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAdminProvisionedCallTypeBasedDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAdminProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedCallTypeBasedDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveCallTypeBasedDataRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveCallTypeBasedDataResponse">
+
+      <wsdl:part name="getEffectiveCallTypeBasedDataReturn" type="impl:CallTypeStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="impl:CallTypeStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAdminProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="impl:CallTypeStatusDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAdminProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="CallScreeningUserIF">
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedData">
+
+         <wsdl:input message="impl:getSubsProvisionedCallTypeBasedDataRequest" name="getSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getSubsProvisionedCallTypeBasedDataResponse" name="getSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedData">
+
+         <wsdl:input message="impl:getAdminProvisionedCallTypeBasedDataRequest" name="getAdminProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getAdminProvisionedCallTypeBasedDataResponse" name="getAdminProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveCallTypeBasedData">
+
+         <wsdl:input message="impl:getEffectiveCallTypeBasedDataRequest" name="getEffectiveCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getEffectiveCallTypeBasedDataResponse" name="getEffectiveCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:setSubsProvisionedCallTypeBasedDataRequest" name="setSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:setSubsProvisionedCallTypeBasedDataResponse" name="setSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedCallTypeBasedData">
+
+         <wsdl:input message="impl:removeSubsProvisionedCallTypeBasedDataRequest" name="removeSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:removeSubsProvisionedCallTypeBasedDataResponse" name="removeSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAdminProvisionedCallTypeBasedData">
+
+         <wsdl:input message="impl:removeAdminProvisionedCallTypeBasedDataRequest" name="removeAdminProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:removeAdminProvisionedCallTypeBasedDataResponse" name="removeAdminProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAdminProvisionedCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:setAdminProvisionedCallTypeBasedDataRequest" name="setAdminProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:setAdminProvisionedCallTypeBasedDataResponse" name="setAdminProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CallScreeningUserService" type="impl:CallScreeningUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEffectiveCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEffectiveCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAdminProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAdminProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAdminProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAdminProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setAdminProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setAdminProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="callscreening.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CallScreeningUserIFService">
+
+      <wsdl:port binding="impl:CallScreeningUserService" name="CallScreeningUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/CallScreeningUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

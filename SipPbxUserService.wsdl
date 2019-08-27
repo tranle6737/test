@@ -1,0 +1,2469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="sippbx.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="sippbx.ws.nortelnetworks.com" xmlns:intf="sippbx.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns102="routes.data.ws.nortelnetworks.com" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:tns271="timeblock.ws.nortelnetworks.com" xmlns:tns31="gab.ws.nortelnetworks.com" xmlns:tns51="route.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="routes.data.ws.nortelnetworks.com"/>
+   <import namespace="sippbx.ws.nortelnetworks.com"/>
+   <import namespace="route.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="route.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="routes.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="sippbx.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="RouteNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="sippbx.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="routes.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="route.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="PbxNodeRouteNaturalKeyDO">
+    <complexContent>
+     <extension base="tns51:RouteNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRoutesActionNKDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRoutesActionDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRoutesActionNKDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeGenericTermActionDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRoutesActionDO">
+      <sequence>
+       <element name="value" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRejectReasonActionDO">
+    <complexContent>
+     <extension base="impl:PbxNodeGenericTermActionDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns31_GlobalAddrBookEntryNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns31:GlobalAddrBookEntryNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeTimeBlockNKDO">
+    <complexContent>
+     <extension base="tns271:TimeBlockGroupNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxNodeTimeBlockNKDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxNodeTimeBlockNKDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeTimeOfDayConditionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="pbxNodeTimeBlocks" nillable="true" type="impl:ArrayOfPbxNodeTimeBlockNKDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeConditionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="anonymousCondition" nillable="true" type="tns102:AnonymousConditionDO"/>
+       <element name="gabCondition" nillable="true" type="tns102:GABConditionDO"/>
+       <element name="genericCondition" nillable="true" type="tns102:GenericConditionDO"/>
+       <element name="timeCondition" nillable="true" type="impl:PbxNodeTimeOfDayConditionDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRejectActionRouteDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRouteNaturalKeyDO">
+      <sequence>
+       <element name="active" type="xsd:boolean"/>
+       <element name="callAction" nillable="true" type="impl:PbxNodeRejectReasonActionDO"/>
+       <element name="condition" nillable="true" type="impl:PbxNodeConditionDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeCallDestinationDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="destinations" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+       <element name="numberOfRings" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxNodeCallDestinationDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxNodeCallDestinationDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeCallActionDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRoutesActionDO">
+      <sequence>
+       <element name="busyDest" nillable="true" type="impl:PbxNodeCallDestinationDO"/>
+       <element name="destination" nillable="true" type="impl:PbxNodeCallDestinationDO"/>
+       <element name="destinations" nillable="true" type="impl:ArrayOfPbxNodeCallDestinationDO"/>
+       <element name="noAnswerDest" nillable="true" type="impl:PbxNodeCallDestinationDO"/>
+       <element name="unreachableDest" nillable="true" type="impl:PbxNodeCallDestinationDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeCallActionRouteDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRouteNaturalKeyDO">
+      <sequence>
+       <element name="active" type="xsd:boolean"/>
+       <element name="callAction" nillable="true" type="impl:PbxNodeCallActionDO"/>
+       <element name="condition" nillable="true" type="impl:PbxNodeConditionDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxNodeRouteNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxNodeRouteNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRouteDO">
+    <complexContent>
+     <extension base="impl:PbxNodeRouteNaturalKeyDO">
+      <sequence>
+       <element name="active" type="xsd:boolean"/>
+       <element name="callAction" nillable="true" type="impl:PbxNodeRoutesActionDO"/>
+       <element name="condition" nillable="true" type="impl:PbxNodeConditionDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxNodeRouteDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxNodeRouteDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxExtensionEntryNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxExtensionEntryNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxExtensionEntryNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PrecedenceOfRoutesDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="alwaysExecPbxNodeRoute" type="xsd:boolean"/>
+       <element name="listOfExtensionUsersHavingPrecedence" nillable="true" type="impl:ArrayOfPbxExtensionEntryNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CS2KExtensionUserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:UserNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCS2KExtensionUserNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CS2KExtensionUserNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SearchCriteria">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="nameCriteria" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CS2KExtensionUserDO">
+    <complexContent>
+     <extension base="impl:CS2KExtensionUserNaturalKeyDO">
+      <sequence>
+       <element name="networkAttendant" type="xsd:boolean"/>
+       <element name="operator" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCS2KExtensionUserDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CS2KExtensionUserDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeRejectReasonDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="rejectMessage" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPbxNodeRejectReasonDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PbxNodeRejectReasonDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeCFVRouteDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="busyDestination" nillable="true" type="soapenc:string"/>
+       <element name="busyEnabled" type="xsd:boolean"/>
+       <element name="isActive" type="xsd:boolean"/>
+       <element name="noAnswerDestination" nillable="true" type="soapenc:string"/>
+       <element name="noAnswerEnabled" type="xsd:boolean"/>
+       <element name="unreachableDestination" nillable="true" type="soapenc:string"/>
+       <element name="unreachableEnabled" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PbxNodeCFIRouteDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="destination" nillable="true" type="soapenc:string"/>
+       <element name="isActive" type="xsd:boolean"/>
+       <element name="numOfRings" type="xsd:int"/>
+       <element name="sentToVoicemail" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="PBXNodeCallTypeStatusNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfPBXNodeCallTypeStatusNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:PBXNodeCallTypeStatusNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SAExtensionUserNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:UserNaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfSAExtensionUserNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SAExtensionUserNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SAExtensionUserDO">
+    <complexContent>
+     <extension base="impl:SAExtensionUserNaturalKeyDO">
+      <sequence>
+       <element name="networkAttendant" type="xsd:boolean"/>
+       <element name="operator" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfSAExtensionUserDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SAExtensionUserDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="routes.data.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="sippbx.ws.nortelnetworks.com"/>
+   <import namespace="route.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AnonymousConditionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="values" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GABConditionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="globalAddrBookEntry" nillable="true" type="impl:ArrayOf_tns31_GlobalAddrBookEntryNaturalKeyDO"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="GenericConditionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="values" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="gab.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="timeblock.ws.nortelnetworks.com"/>
+   <import namespace="routes.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="sippbx.ws.nortelnetworks.com"/>
+   <import namespace="route.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="GlobalAddrBookEntryNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="timeblock.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="gab.ws.nortelnetworks.com"/>
+   <import namespace="routes.data.ws.nortelnetworks.com"/>
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="sippbx.ws.nortelnetworks.com"/>
+   <import namespace="route.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="TimeBlockGroupNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="isPbxNodeRouteExecutedFirstResponse">
+
+      <wsdl:part name="isPbxNodeRouteExecutedFirstReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchExtensionUsersResponse">
+
+      <wsdl:part name="searchExtensionUsersReturn" type="impl:ArrayOfCS2KExtensionUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCFIRouteResponse">
+
+      <wsdl:part name="getPbxNodeCFIRouteReturn" type="impl:PbxNodeCFIRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNodeRejectReasonsRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeCallActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeCallActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addExtensionUsersToPrecedenceListRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxExtensionEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="executeExtensionUsersRoutesHavingPrecedenceFirstResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="searchExtensionUsersRequest">
+
+      <wsdl:part name="in0" type="impl:SearchCriteria"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllExtensionUsersFromPrecedenceListRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataForSippbxRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPBXNodeCallTypeStatusNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVNoAnswerEnabledForSippbxResponse">
+
+      <wsdl:part name="isCFVNoAnswerEnabledForSippbxReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRoutesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataForSippbxResponse">
+
+      <wsdl:part name="getSubsProvisionedCallTypeBasedDataForSippbxReturn" type="impl:ArrayOfPBXNodeCallTypeStatusNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeUserNameRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setPbxNodeCFVRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCallActionRouteResponse">
+
+      <wsdl:part name="getPbxNodeCallActionRouteReturn" type="impl:PbxNodeCallActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderPbxNodeRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setPrecedenceOfRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setPbxNodeCFVRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeCFVRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPbxNodeCFIRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeCFIRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getExtensionUsersForSASipPbxResponse">
+
+      <wsdl:part name="getExtensionUsersForSASipPbxReturn" type="impl:ArrayOfSAExtensionUserNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataForSippbxResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyNodeRejectReasonsResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="isPbxNodeRouteExecutedFirstRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeRejectActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:PbxNodeRejectActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="executeExtensionUsersRoutesHavingPrecedenceFirstRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCallActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeRejectActionRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getSipPbxNodeTypeRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeUserNameResponse">
+
+      <wsdl:part name="getPbxNodeUserNameReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isNetworkAttendantResponse">
+
+      <wsdl:part name="isNetworkAttendantReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPrecedenceOfRoutesRequest">
+
+      <wsdl:part name="in0" type="impl:PrecedenceOfRoutesDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isOperatorResponse">
+
+      <wsdl:part name="isOperatorReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeCallActionRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="addExtensionUsersToPrecedenceListResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVBusyEnabledForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRejectActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVBusyEnabledForSippbxResponse">
+
+      <wsdl:part name="isCFVBusyEnabledForSippbxReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeRejectActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRejectActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getExtensionUsersForCS2KPbxResponse">
+
+      <wsdl:part name="getExtensionUsersForCS2KPbxReturn" type="impl:ArrayOfCS2KExtensionUserNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCFVRouteResponse">
+
+      <wsdl:part name="getPbxNodeCFVRouteReturn" type="impl:PbxNodeCFVRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllExtensionUsersFromPrecedenceListResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVImmediateEnabledForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVImmediateEnabledForSippbxResponse">
+
+      <wsdl:part name="isCFVImmediateEnabledForSippbxReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="isOperatorRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="reorderPbxNodeRoutesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCFVRouteRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeAllExtensionUsersFromPrecedenceListRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataForSippbxResponse">
+
+      <wsdl:part name="getAdminProvisionedCallTypeBasedDataForSippbxReturn" type="impl:ArrayOfPBXNodeCallTypeStatusNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVUnreachableEnabledForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="executePbxNodeRouteFirstResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setPbxNodeCFIRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrecedenceOfRoutesResponse">
+
+      <wsdl:part name="getPrecedenceOfRoutesReturn" type="impl:PrecedenceOfRoutesDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="executePbxNodeRouteFirstRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:PbxNodeRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRoutesResponse">
+
+      <wsdl:part name="getPbxNodeRoutesReturn" type="impl:ArrayOfPbxNodeRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyPbxNodeCallActionRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+      <wsdl:part name="in1" type="impl:PbxNodeCallActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSipPbxNodeTypeResponse">
+
+      <wsdl:part name="getSipPbxNodeTypeReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeCallActionRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllExtensionUsersFromPrecedenceListResponse">
+
+      <wsdl:part name="getAllExtensionUsersFromPrecedenceListReturn" type="impl:ArrayOfPbxExtensionEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removePbxNodeRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getExtensionUsersForSASipPbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRejectActionRouteResponse">
+
+      <wsdl:part name="getPbxNodeRejectActionRouteReturn" type="impl:PbxNodeRejectActionRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeExtensionsFromPrecedenceListRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxExtensionEntryNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivatePbxNodeRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeExtensionsFromPrecedenceListResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeCFIRouteRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getNodeRejectReasonsResponse">
+
+      <wsdl:part name="getNodeRejectReasonsReturn" type="impl:ArrayOfPbxNodeRejectReasonDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyNodeRejectReasonsRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxNodeRejectReasonDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="activatePbxNodeRoutesResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrecedenceOfRoutesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getExtensionUsersForCS2KPbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVNoAnswerEnabledForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchExtensionUsersForSASipPbxRequest">
+
+      <wsdl:part name="in0" type="impl:SearchCriteria"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPbxNodeRouteResponse">
+
+      <wsdl:part name="getPbxNodeRouteReturn" type="impl:PbxNodeRouteDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataForSippbxRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivatePbxNodeRoutesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removePbxNodeRouteRequest">
+
+      <wsdl:part name="in0" type="impl:PbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCFVUnreachableEnabledForSippbxResponse">
+
+      <wsdl:part name="isCFVUnreachableEnabledForSippbxReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPbxNodeRejectActionRouteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="isNetworkAttendantRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="activatePbxNodeRoutesRequest">
+
+      <wsdl:part name="in0" type="impl:ArrayOfPbxNodeRouteNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchExtensionUsersForSASipPbxResponse">
+
+      <wsdl:part name="searchExtensionUsersForSASipPbxReturn" type="impl:ArrayOfSAExtensionUserDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SipPbxUserIF">
+
+      <wsdl:operation name="getPbxNodeRejectActionRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPbxNodeRejectActionRouteRequest" name="getPbxNodeRejectActionRouteRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeRejectActionRouteResponse" name="getPbxNodeRejectActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCallActionRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPbxNodeCallActionRouteRequest" name="getPbxNodeCallActionRouteRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeCallActionRouteResponse" name="getPbxNodeCallActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivatePbxNodeRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:deactivatePbxNodeRoutesRequest" name="deactivatePbxNodeRoutesRequest"/>
+
+         <wsdl:output message="impl:deactivatePbxNodeRoutesResponse" name="deactivatePbxNodeRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeRejectActionRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:addPbxNodeRejectActionRouteRequest" name="addPbxNodeRejectActionRouteRequest"/>
+
+         <wsdl:output message="impl:addPbxNodeRejectActionRouteResponse" name="addPbxNodeRejectActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeCallActionRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:addPbxNodeCallActionRouteRequest" name="addPbxNodeCallActionRouteRequest"/>
+
+         <wsdl:output message="impl:addPbxNodeCallActionRouteResponse" name="addPbxNodeCallActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:addPbxNodeRouteRequest" name="addPbxNodeRouteRequest"/>
+
+         <wsdl:output message="impl:addPbxNodeRouteResponse" name="addPbxNodeRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPbxNodeRouteRequest" name="getPbxNodeRouteRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeRouteResponse" name="getPbxNodeRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeRoutes">
+
+         <wsdl:input message="impl:getPbxNodeRoutesRequest" name="getPbxNodeRoutesRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeRoutesResponse" name="getPbxNodeRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removePbxNodeRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:removePbxNodeRouteRequest" name="removePbxNodeRouteRequest"/>
+
+         <wsdl:output message="impl:removePbxNodeRouteResponse" name="removePbxNodeRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isOperator">
+
+         <wsdl:input message="impl:isOperatorRequest" name="isOperatorRequest"/>
+
+         <wsdl:output message="impl:isOperatorResponse" name="isOperatorResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isNetworkAttendant">
+
+         <wsdl:input message="impl:isNetworkAttendantRequest" name="isNetworkAttendantRequest"/>
+
+         <wsdl:output message="impl:isNetworkAttendantResponse" name="isNetworkAttendantResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeUserName">
+
+         <wsdl:input message="impl:getPbxNodeUserNameRequest" name="getPbxNodeUserNameRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeUserNameResponse" name="getPbxNodeUserNameResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyPbxNodeRouteRequest" name="modifyPbxNodeRouteRequest"/>
+
+         <wsdl:output message="impl:modifyPbxNodeRouteResponse" name="modifyPbxNodeRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeCallActionRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyPbxNodeCallActionRouteRequest" name="modifyPbxNodeCallActionRouteRequest"/>
+
+         <wsdl:output message="impl:modifyPbxNodeCallActionRouteResponse" name="modifyPbxNodeCallActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeRejectActionRoute" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyPbxNodeRejectActionRouteRequest" name="modifyPbxNodeRejectActionRouteRequest"/>
+
+         <wsdl:output message="impl:modifyPbxNodeRejectActionRouteResponse" name="modifyPbxNodeRejectActionRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activatePbxNodeRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:activatePbxNodeRoutesRequest" name="activatePbxNodeRoutesRequest"/>
+
+         <wsdl:output message="impl:activatePbxNodeRoutesResponse" name="activatePbxNodeRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderPbxNodeRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:reorderPbxNodeRoutesRequest" name="reorderPbxNodeRoutesRequest"/>
+
+         <wsdl:output message="impl:reorderPbxNodeRoutesResponse" name="reorderPbxNodeRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrecedenceOfRoutes">
+
+         <wsdl:input message="impl:getPrecedenceOfRoutesRequest" name="getPrecedenceOfRoutesRequest"/>
+
+         <wsdl:output message="impl:getPrecedenceOfRoutesResponse" name="getPrecedenceOfRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPrecedenceOfRoutes" parameterOrder="in0">
+
+         <wsdl:input message="impl:setPrecedenceOfRoutesRequest" name="setPrecedenceOfRoutesRequest"/>
+
+         <wsdl:output message="impl:setPrecedenceOfRoutesResponse" name="setPrecedenceOfRoutesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="executePbxNodeRouteFirst">
+
+         <wsdl:input message="impl:executePbxNodeRouteFirstRequest" name="executePbxNodeRouteFirstRequest"/>
+
+         <wsdl:output message="impl:executePbxNodeRouteFirstResponse" name="executePbxNodeRouteFirstResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="executeExtensionUsersRoutesHavingPrecedenceFirst">
+
+         <wsdl:input message="impl:executeExtensionUsersRoutesHavingPrecedenceFirstRequest" name="executeExtensionUsersRoutesHavingPrecedenceFirstRequest"/>
+
+         <wsdl:output message="impl:executeExtensionUsersRoutesHavingPrecedenceFirstResponse" name="executeExtensionUsersRoutesHavingPrecedenceFirstResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isPbxNodeRouteExecutedFirst">
+
+         <wsdl:input message="impl:isPbxNodeRouteExecutedFirstRequest" name="isPbxNodeRouteExecutedFirstRequest"/>
+
+         <wsdl:output message="impl:isPbxNodeRouteExecutedFirstResponse" name="isPbxNodeRouteExecutedFirstResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addExtensionUsersToPrecedenceList" parameterOrder="in0">
+
+         <wsdl:input message="impl:addExtensionUsersToPrecedenceListRequest" name="addExtensionUsersToPrecedenceListRequest"/>
+
+         <wsdl:output message="impl:addExtensionUsersToPrecedenceListResponse" name="addExtensionUsersToPrecedenceListResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllExtensionUsersFromPrecedenceList">
+
+         <wsdl:input message="impl:getAllExtensionUsersFromPrecedenceListRequest" name="getAllExtensionUsersFromPrecedenceListRequest"/>
+
+         <wsdl:output message="impl:getAllExtensionUsersFromPrecedenceListResponse" name="getAllExtensionUsersFromPrecedenceListResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeExtensionsFromPrecedenceList" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeExtensionsFromPrecedenceListRequest" name="removeExtensionsFromPrecedenceListRequest"/>
+
+         <wsdl:output message="impl:removeExtensionsFromPrecedenceListResponse" name="removeExtensionsFromPrecedenceListResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllExtensionUsersFromPrecedenceList">
+
+         <wsdl:input message="impl:removeAllExtensionUsersFromPrecedenceListRequest" name="removeAllExtensionUsersFromPrecedenceListRequest"/>
+
+         <wsdl:output message="impl:removeAllExtensionUsersFromPrecedenceListResponse" name="removeAllExtensionUsersFromPrecedenceListResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExtensionUsersForCS2KPbx">
+
+         <wsdl:input message="impl:getExtensionUsersForCS2KPbxRequest" name="getExtensionUsersForCS2KPbxRequest"/>
+
+         <wsdl:output message="impl:getExtensionUsersForCS2KPbxResponse" name="getExtensionUsersForCS2KPbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchExtensionUsers" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchExtensionUsersRequest" name="searchExtensionUsersRequest"/>
+
+         <wsdl:output message="impl:searchExtensionUsersResponse" name="searchExtensionUsersResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNodeRejectReasons">
+
+         <wsdl:input message="impl:getNodeRejectReasonsRequest" name="getNodeRejectReasonsRequest"/>
+
+         <wsdl:output message="impl:getNodeRejectReasonsResponse" name="getNodeRejectReasonsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyNodeRejectReasons" parameterOrder="in0">
+
+         <wsdl:input message="impl:modifyNodeRejectReasonsRequest" name="modifyNodeRejectReasonsRequest"/>
+
+         <wsdl:output message="impl:modifyNodeRejectReasonsResponse" name="modifyNodeRejectReasonsResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSipPbxNodeType">
+
+         <wsdl:input message="impl:getSipPbxNodeTypeRequest" name="getSipPbxNodeTypeRequest"/>
+
+         <wsdl:output message="impl:getSipPbxNodeTypeResponse" name="getSipPbxNodeTypeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPbxNodeCFVRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:setPbxNodeCFVRouteRequest" name="setPbxNodeCFVRouteRequest"/>
+
+         <wsdl:output message="impl:setPbxNodeCFVRouteResponse" name="setPbxNodeCFVRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCFVRoute">
+
+         <wsdl:input message="impl:getPbxNodeCFVRouteRequest" name="getPbxNodeCFVRouteRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeCFVRouteResponse" name="getPbxNodeCFVRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPbxNodeCFIRoute" parameterOrder="in0">
+
+         <wsdl:input message="impl:setPbxNodeCFIRouteRequest" name="setPbxNodeCFIRouteRequest"/>
+
+         <wsdl:output message="impl:setPbxNodeCFIRouteResponse" name="setPbxNodeCFIRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCFIRoute">
+
+         <wsdl:input message="impl:getPbxNodeCFIRouteRequest" name="getPbxNodeCFIRouteRequest"/>
+
+         <wsdl:output message="impl:getPbxNodeCFIRouteResponse" name="getPbxNodeCFIRouteResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVUnreachableEnabledForSippbx">
+
+         <wsdl:input message="impl:isCFVUnreachableEnabledForSippbxRequest" name="isCFVUnreachableEnabledForSippbxRequest"/>
+
+         <wsdl:output message="impl:isCFVUnreachableEnabledForSippbxResponse" name="isCFVUnreachableEnabledForSippbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVBusyEnabledForSippbx">
+
+         <wsdl:input message="impl:isCFVBusyEnabledForSippbxRequest" name="isCFVBusyEnabledForSippbxRequest"/>
+
+         <wsdl:output message="impl:isCFVBusyEnabledForSippbxResponse" name="isCFVBusyEnabledForSippbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVNoAnswerEnabledForSippbx">
+
+         <wsdl:input message="impl:isCFVNoAnswerEnabledForSippbxRequest" name="isCFVNoAnswerEnabledForSippbxRequest"/>
+
+         <wsdl:output message="impl:isCFVNoAnswerEnabledForSippbxResponse" name="isCFVNoAnswerEnabledForSippbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVImmediateEnabledForSippbx">
+
+         <wsdl:input message="impl:isCFVImmediateEnabledForSippbxRequest" name="isCFVImmediateEnabledForSippbxRequest"/>
+
+         <wsdl:output message="impl:isCFVImmediateEnabledForSippbxResponse" name="isCFVImmediateEnabledForSippbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedDataForSippbx" parameterOrder="in0">
+
+         <wsdl:input message="impl:setSubsProvisionedCallTypeBasedDataForSippbxRequest" name="setSubsProvisionedCallTypeBasedDataForSippbxRequest"/>
+
+         <wsdl:output message="impl:setSubsProvisionedCallTypeBasedDataForSippbxResponse" name="setSubsProvisionedCallTypeBasedDataForSippbxResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedDataForSippbx">
+
+         <wsdl:input message="impl:getSubsProvisionedCallTypeBasedDataForSippbxRequest" name="getSubsProvisionedCallTypeBasedDataForSippbxRequest"/>
+
+         <wsdl:output message="impl:getSubsProvisionedCallTypeBasedDataForSippbxResponse" name="getSubsProvisionedCallTypeBasedDataForSippbxResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedDataForSippbx">
+
+         <wsdl:input message="impl:getAdminProvisionedCallTypeBasedDataForSippbxRequest" name="getAdminProvisionedCallTypeBasedDataForSippbxRequest"/>
+
+         <wsdl:output message="impl:getAdminProvisionedCallTypeBasedDataForSippbxResponse" name="getAdminProvisionedCallTypeBasedDataForSippbxResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExtensionUsersForSASipPbx">
+
+         <wsdl:input message="impl:getExtensionUsersForSASipPbxRequest" name="getExtensionUsersForSASipPbxRequest"/>
+
+         <wsdl:output message="impl:getExtensionUsersForSASipPbxResponse" name="getExtensionUsersForSASipPbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchExtensionUsersForSASipPbx" parameterOrder="in0">
+
+         <wsdl:input message="impl:searchExtensionUsersForSASipPbxRequest" name="searchExtensionUsersForSASipPbxRequest"/>
+
+         <wsdl:output message="impl:searchExtensionUsersForSASipPbxResponse" name="searchExtensionUsersForSASipPbxResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SipPbxUserService" type="impl:SipPbxUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getPbxNodeRejectActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeRejectActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeRejectActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCallActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeCallActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeCallActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivatePbxNodeRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deactivatePbxNodeRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deactivatePbxNodeRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeRejectActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPbxNodeRejectActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPbxNodeRejectActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeCallActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPbxNodeCallActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPbxNodeCallActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPbxNodeRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPbxNodeRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPbxNodeRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removePbxNodeRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removePbxNodeRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removePbxNodeRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isOperator">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isOperatorRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isOperatorResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isNetworkAttendant">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isNetworkAttendantRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isNetworkAttendantResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeUserName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeUserNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeUserNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyPbxNodeRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyPbxNodeRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeCallActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyPbxNodeCallActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyPbxNodeCallActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyPbxNodeRejectActionRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyPbxNodeRejectActionRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyPbxNodeRejectActionRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="activatePbxNodeRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="activatePbxNodeRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="activatePbxNodeRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reorderPbxNodeRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reorderPbxNodeRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reorderPbxNodeRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrecedenceOfRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrecedenceOfRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrecedenceOfRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPrecedenceOfRoutes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPrecedenceOfRoutesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPrecedenceOfRoutesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="executePbxNodeRouteFirst">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="executePbxNodeRouteFirstRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="executePbxNodeRouteFirstResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="executeExtensionUsersRoutesHavingPrecedenceFirst">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="executeExtensionUsersRoutesHavingPrecedenceFirstRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="executeExtensionUsersRoutesHavingPrecedenceFirstResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isPbxNodeRouteExecutedFirst">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isPbxNodeRouteExecutedFirstRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isPbxNodeRouteExecutedFirstResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addExtensionUsersToPrecedenceList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addExtensionUsersToPrecedenceListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addExtensionUsersToPrecedenceListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllExtensionUsersFromPrecedenceList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllExtensionUsersFromPrecedenceListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllExtensionUsersFromPrecedenceListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeExtensionsFromPrecedenceList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeExtensionsFromPrecedenceListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeExtensionsFromPrecedenceListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeAllExtensionUsersFromPrecedenceList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeAllExtensionUsersFromPrecedenceListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeAllExtensionUsersFromPrecedenceListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExtensionUsersForCS2KPbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getExtensionUsersForCS2KPbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getExtensionUsersForCS2KPbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchExtensionUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchExtensionUsersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchExtensionUsersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNodeRejectReasons">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNodeRejectReasonsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNodeRejectReasonsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyNodeRejectReasons">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyNodeRejectReasonsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyNodeRejectReasonsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSipPbxNodeType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSipPbxNodeTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSipPbxNodeTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPbxNodeCFVRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPbxNodeCFVRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPbxNodeCFVRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCFVRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeCFVRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeCFVRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPbxNodeCFIRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPbxNodeCFIRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPbxNodeCFIRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPbxNodeCFIRoute">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPbxNodeCFIRouteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPbxNodeCFIRouteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVUnreachableEnabledForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCFVUnreachableEnabledForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCFVUnreachableEnabledForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVBusyEnabledForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCFVBusyEnabledForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCFVBusyEnabledForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVNoAnswerEnabledForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCFVNoAnswerEnabledForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCFVNoAnswerEnabledForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCFVImmediateEnabledForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCFVImmediateEnabledForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCFVImmediateEnabledForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedDataForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setSubsProvisionedCallTypeBasedDataForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setSubsProvisionedCallTypeBasedDataForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedDataForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSubsProvisionedCallTypeBasedDataForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSubsProvisionedCallTypeBasedDataForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedDataForSippbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminProvisionedCallTypeBasedDataForSippbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminProvisionedCallTypeBasedDataForSippbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getExtensionUsersForSASipPbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getExtensionUsersForSASipPbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getExtensionUsersForSASipPbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchExtensionUsersForSASipPbx">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchExtensionUsersForSASipPbxRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchExtensionUsersForSASipPbxResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="sippbx.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SipPbxUserIFService">
+
+      <wsdl:port binding="impl:SipPbxUserService" name="SipPbxUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/SipPbxUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

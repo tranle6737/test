@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="callscreening.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="callscreening.opi.ims.nortelnetworks.com" xmlns:intf="callscreening.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="callscreening.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="callscreening.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CallTypeStatus">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="callTypeName" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfCallTypeStatus">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:CallTypeStatus[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getSubsProvisionedAllIncomingCallsDataResponse">
+
+      <wsdl:part name="getSubsProvisionedAllIncomingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedAllOutgoingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedAllOutgoingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedAllIncomingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedAllIncomingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedAllOutgoingCallsDataResponse">
+
+      <wsdl:part name="getSubsProvisionedAllOutgoingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCallScrCallTypeNamesResponse">
+
+      <wsdl:part name="getAllCallScrCallTypeNamesReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCallScrCallTypeNamesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedAllOutgoingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveAllIncomingCallsDataResponse">
+
+      <wsdl:part name="getEffectiveAllIncomingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedAllOutgoingCallsDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedAllIncomingCallsDataResponse">
+
+      <wsdl:part name="getAdminProvisionedAllIncomingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedCallTypeBasedDataResponse">
+
+      <wsdl:part name="getAdminProvisionedCallTypeBasedDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataResponse">
+
+      <wsdl:part name="getSubsProvisionedCallTypeBasedDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedAllIncomingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedAllIncomingCallsDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveAllOutgoingCallsDataResponse">
+
+      <wsdl:part name="getEffectiveAllOutgoingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedAllOutgoingCallsDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedAllIncomingCallsDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveCallTypeBasedDataResponse">
+
+      <wsdl:part name="getEffectiveCallTypeBasedDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getSubsProvisionedCallTypeBasedDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveAllOutgoingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedAllOutgoingCallsDataResponse">
+
+      <wsdl:part name="getAdminProvisionedAllOutgoingCallsDataReturn" type="impl:ArrayOfCallTypeStatus"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeSubsProvisionedAllIncomingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveAllIncomingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminProvisionedAllOutgoingCallsDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setSubsProvisionedCallTypeBasedDataResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserCallScreeningMgr">
+
+      <wsdl:operation name="getSubsProvisionedAllIncomingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getSubsProvisionedAllIncomingCallsDataRequest" name="getSubsProvisionedAllIncomingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getSubsProvisionedAllIncomingCallsDataResponse" name="getSubsProvisionedAllIncomingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedAllIncomingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAdminProvisionedAllIncomingCallsDataRequest" name="getAdminProvisionedAllIncomingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getAdminProvisionedAllIncomingCallsDataResponse" name="getAdminProvisionedAllIncomingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveAllIncomingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getEffectiveAllIncomingCallsDataRequest" name="getEffectiveAllIncomingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getEffectiveAllIncomingCallsDataResponse" name="getEffectiveAllIncomingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getSubsProvisionedCallTypeBasedDataRequest" name="getSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getSubsProvisionedCallTypeBasedDataResponse" name="getSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAdminProvisionedCallTypeBasedDataRequest" name="getAdminProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getAdminProvisionedCallTypeBasedDataResponse" name="getAdminProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getEffectiveCallTypeBasedDataRequest" name="getEffectiveCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:getEffectiveCallTypeBasedDataResponse" name="getEffectiveCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedAllOutgoingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getSubsProvisionedAllOutgoingCallsDataRequest" name="getSubsProvisionedAllOutgoingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getSubsProvisionedAllOutgoingCallsDataResponse" name="getSubsProvisionedAllOutgoingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedAllOutgoingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAdminProvisionedAllOutgoingCallsDataRequest" name="getAdminProvisionedAllOutgoingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getAdminProvisionedAllOutgoingCallsDataResponse" name="getAdminProvisionedAllOutgoingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedData" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:setSubsProvisionedCallTypeBasedDataRequest" name="setSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:setSubsProvisionedCallTypeBasedDataResponse" name="setSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedAllIncomingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:setSubsProvisionedAllIncomingCallsDataRequest" name="setSubsProvisionedAllIncomingCallsDataRequest"/>
+
+         <wsdl:output message="impl:setSubsProvisionedAllIncomingCallsDataResponse" name="setSubsProvisionedAllIncomingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedAllOutgoingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:setSubsProvisionedAllOutgoingCallsDataRequest" name="setSubsProvisionedAllOutgoingCallsDataRequest"/>
+
+         <wsdl:output message="impl:setSubsProvisionedAllOutgoingCallsDataResponse" name="setSubsProvisionedAllOutgoingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveAllOutgoingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getEffectiveAllOutgoingCallsDataRequest" name="getEffectiveAllOutgoingCallsDataRequest"/>
+
+         <wsdl:output message="impl:getEffectiveAllOutgoingCallsDataResponse" name="getEffectiveAllOutgoingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedCallTypeBasedData" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeSubsProvisionedCallTypeBasedDataRequest" name="removeSubsProvisionedCallTypeBasedDataRequest"/>
+
+         <wsdl:output message="impl:removeSubsProvisionedCallTypeBasedDataResponse" name="removeSubsProvisionedCallTypeBasedDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedAllIncomingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeSubsProvisionedAllIncomingCallsDataRequest" name="removeSubsProvisionedAllIncomingCallsDataRequest"/>
+
+         <wsdl:output message="impl:removeSubsProvisionedAllIncomingCallsDataResponse" name="removeSubsProvisionedAllIncomingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedAllOutgoingCallsData" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeSubsProvisionedAllOutgoingCallsDataRequest" name="removeSubsProvisionedAllOutgoingCallsDataRequest"/>
+
+         <wsdl:output message="impl:removeSubsProvisionedAllOutgoingCallsDataResponse" name="removeSubsProvisionedAllOutgoingCallsDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCallScrCallTypeNames">
+
+         <wsdl:input message="impl:getAllCallScrCallTypeNamesRequest" name="getAllCallScrCallTypeNamesRequest"/>
+
+         <wsdl:output message="impl:getAllCallScrCallTypeNamesResponse" name="getAllCallScrCallTypeNamesResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserCallScreening" type="impl:UserCallScreeningMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSubsProvisionedAllIncomingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSubsProvisionedAllIncomingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSubsProvisionedAllIncomingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedAllIncomingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminProvisionedAllIncomingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminProvisionedAllIncomingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveAllIncomingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEffectiveAllIncomingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEffectiveAllIncomingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEffectiveCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEffectiveCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSubsProvisionedAllOutgoingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSubsProvisionedAllOutgoingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSubsProvisionedAllOutgoingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminProvisionedAllOutgoingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminProvisionedAllOutgoingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminProvisionedAllOutgoingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedAllIncomingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setSubsProvisionedAllIncomingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setSubsProvisionedAllIncomingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setSubsProvisionedAllOutgoingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setSubsProvisionedAllOutgoingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setSubsProvisionedAllOutgoingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveAllOutgoingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEffectiveAllOutgoingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEffectiveAllOutgoingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedCallTypeBasedData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeSubsProvisionedCallTypeBasedDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeSubsProvisionedCallTypeBasedDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedAllIncomingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeSubsProvisionedAllIncomingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeSubsProvisionedAllIncomingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeSubsProvisionedAllOutgoingCallsData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeSubsProvisionedAllOutgoingCallsDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeSubsProvisionedAllOutgoingCallsDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCallScrCallTypeNames">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCallScrCallTypeNamesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCallScrCallTypeNamesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="callscreening.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserCallScreeningMgrService">
+
+      <wsdl:port binding="impl:UserCallScreening" name="UserCallScreening">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UserCallScreening"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

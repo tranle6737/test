@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="user.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="user.opi.ims.nortelnetworks.com" xmlns:intf="user.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="user.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="MeetMeConfData">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="accessCode" nillable="true" type="soapenc:string"/>
+       <element name="audioEmotIconsEnabled" type="xsd:boolean"/>
+       <element name="audioRecEmailAddr" nillable="true" type="soapenc:string"/>
+       <element name="chairEnds" type="xsd:boolean"/>
+       <element name="chairPin" nillable="true" type="soapenc:string"/>
+       <element name="entryExitIndication" nillable="true" type="soapenc:string"/>
+       <element name="fastStart" type="xsd:boolean"/>
+       <element name="imEnabled" type="xsd:boolean"/>
+       <element name="premConf" type="xsd:boolean"/>
+       <element name="publicPin" nillable="true" type="soapenc:string"/>
+       <element name="userState" type="xsd:boolean"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="user.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addMeetMeConfUserResponse">
+
+      <wsdl:part name="addMeetMeConfUserReturn" type="tns126:MeetMeConfData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addMeetMeConfUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="tns126:MeetMeConfData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConfDialUpNumbersResponse">
+
+      <wsdl:part name="getConfDialUpNumbersReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabURLResponse">
+
+      <wsdl:part name="getWebCollabURLReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChairAccessURLResponse">
+
+      <wsdl:part name="getChairAccessURLReturn" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWebCollabURLRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMeetMeConfDataResponse">
+
+      <wsdl:part name="getMeetMeConfDataReturn" type="tns126:MeetMeConfData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeChairPinResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getChairAccessURLRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeChairPinRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConfDialUpNumbersRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyMeetMeConfUserResponse">
+
+      <wsdl:part name="modifyMeetMeConfUserReturn" type="tns126:MeetMeConfData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeMeetMeConfUserResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="getMeetMeConfDataRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyMeetMeConfUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+      <wsdl:part name="in1" type="tns126:MeetMeConfData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeMeetMeConfUserRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MeetMeUserMgr">
+
+      <wsdl:operation name="removeMeetMeConfUser" parameterOrder="in0">
+
+         <wsdl:input message="impl:removeMeetMeConfUserRequest" name="removeMeetMeConfUserRequest"/>
+
+         <wsdl:output message="impl:removeMeetMeConfUserResponse" name="removeMeetMeConfUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMeetMeConfData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getMeetMeConfDataRequest" name="getMeetMeConfDataRequest"/>
+
+         <wsdl:output message="impl:getMeetMeConfDataResponse" name="getMeetMeConfDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyMeetMeConfUser" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:modifyMeetMeConfUserRequest" name="modifyMeetMeConfUserRequest"/>
+
+         <wsdl:output message="impl:modifyMeetMeConfUserResponse" name="modifyMeetMeConfUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabURL" parameterOrder="in0">
+
+         <wsdl:input message="impl:getWebCollabURLRequest" name="getWebCollabURLRequest"/>
+
+         <wsdl:output message="impl:getWebCollabURLResponse" name="getWebCollabURLResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChairAccessURL" parameterOrder="in0">
+
+         <wsdl:input message="impl:getChairAccessURLRequest" name="getChairAccessURLRequest"/>
+
+         <wsdl:output message="impl:getChairAccessURLResponse" name="getChairAccessURLResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeChairPin" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:changeChairPinRequest" name="changeChairPinRequest"/>
+
+         <wsdl:output message="impl:changeChairPinResponse" name="changeChairPinResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConfDialUpNumbers" parameterOrder="in0">
+
+         <wsdl:input message="impl:getConfDialUpNumbersRequest" name="getConfDialUpNumbersRequest"/>
+
+         <wsdl:output message="impl:getConfDialUpNumbersResponse" name="getConfDialUpNumbersResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addMeetMeConfUser" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:addMeetMeConfUserRequest" name="addMeetMeConfUserRequest"/>
+
+         <wsdl:output message="impl:addMeetMeConfUserResponse" name="addMeetMeConfUserResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MeetMe" type="impl:MeetMeUserMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="removeMeetMeConfUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeMeetMeConfUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeMeetMeConfUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMeetMeConfData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMeetMeConfDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMeetMeConfDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyMeetMeConfUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyMeetMeConfUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyMeetMeConfUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWebCollabURL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWebCollabURLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWebCollabURLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChairAccessURL">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getChairAccessURLRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getChairAccessURLResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeChairPin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeChairPinRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeChairPinResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConfDialUpNumbers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getConfDialUpNumbersRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getConfDialUpNumbersResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addMeetMeConfUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addMeetMeConfUserRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addMeetMeConfUserResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="user.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MeetMeUserMgrService">
+
+      <wsdl:port binding="impl:MeetMe" name="MeetMe">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/MeetMe"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

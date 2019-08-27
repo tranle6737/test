@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="mlpp.ws.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="mlpp.ws.nortelnetworks.com" xmlns:intf="mlpp.ws.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns2="common.ws.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="common.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="mlpp.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisioningDataObject">
+    <sequence/>
+   </complexType>
+   <complexType abstract="true" name="NaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="name" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ParmsList">
+    <sequence>
+     <element name="parmsList" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="translate" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="ExceptionParms">
+    <sequence>
+     <element name="exceptionParms" nillable="true" type="impl:ArrayOf_tns2_ParmsList"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProvisioningException">
+    <sequence>
+     <element name="commonErrorCode" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+     <element name="methodName" nillable="true" type="soapenc:string"/>
+     <element name="parms" nillable="true" type="tns2:ExceptionParms"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSVersionDO">
+    <complexContent>
+     <extension base="tns2:ProvisioningDataObject">
+      <sequence>
+       <element name="currentVersion" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionAdded" nillable="true" type="soapenc:string"/>
+       <element name="mcpVersionLastUpdated" nillable="true" type="soapenc:string"/>
+       <element name="supportedVersions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="mlpp.ws.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="common.ws.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="MLPPDscpMediaTypeNaturalKeyDO">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MLPPDscpParmsNaturalKey">
+    <complexContent>
+     <extension base="tns2:NaturalKeyDO">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MLPPDscpParmsDO">
+    <complexContent>
+     <extension base="impl:MLPPDscpParmsNaturalKey">
+      <sequence>
+       <element name="flash" type="xsd:int"/>
+       <element name="flashOverride" type="xsd:int"/>
+       <element name="immediate" type="xsd:int"/>
+       <element name="mediaType" nillable="true" type="impl:MLPPDscpMediaTypeNaturalKeyDO"/>
+       <element name="priority" type="xsd:int"/>
+       <element name="routine" type="xsd:int"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMLPPDscpParmsDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:MLPPDscpParmsDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ParmsList">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:ParmsList[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMLPPDscpParmsNaturalKey">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:MLPPDscpParmsNaturalKey[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOfMLPPDscpMediaTypeNaturalKeyDO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:MLPPDscpMediaTypeNaturalKeyDO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllMLPPDscpMediaTypesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAssignedMLPPDscpNamesForMediaTypeRequest">
+
+      <wsdl:part name="in0" type="impl:MLPPDscpMediaTypeNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMLPPDscpParmDataRequest">
+
+      <wsdl:part name="in0" type="impl:MLPPDscpParmsNaturalKey"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAssignedMLPPDscpForMediaTypeRequest">
+
+      <wsdl:part name="in0" type="impl:MLPPDscpMediaTypeNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllMLPPDscpMediaTypesResponse">
+
+      <wsdl:part name="getAllMLPPDscpMediaTypesReturn" type="impl:ArrayOfMLPPDscpMediaTypeNaturalKeyDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAssignedMLPPDscpNamesForMediaTypeResponse">
+
+      <wsdl:part name="getAllAssignedMLPPDscpNamesForMediaTypeReturn" type="impl:ArrayOfMLPPDscpParmsNaturalKey"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMLPPDscpParmDataResponse">
+
+      <wsdl:part name="getMLPPDscpParmDataReturn" type="impl:MLPPDscpParmsDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisioningException">
+
+      <wsdl:part name="fault" type="tns2:ProvisioningException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getWSVersionResponse">
+
+      <wsdl:part name="getWSVersionReturn" type="tns2:WSVersionDO"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllAssignedMLPPDscpForMediaTypeResponse">
+
+      <wsdl:part name="getAllAssignedMLPPDscpForMediaTypeReturn" type="impl:ArrayOfMLPPDscpParmsDO"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MLPPDscpUserIF">
+
+      <wsdl:operation name="getAllAssignedMLPPDscpForMediaType" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAllAssignedMLPPDscpForMediaTypeRequest" name="getAllAssignedMLPPDscpForMediaTypeRequest"/>
+
+         <wsdl:output message="impl:getAllAssignedMLPPDscpForMediaTypeResponse" name="getAllAssignedMLPPDscpForMediaTypeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAssignedMLPPDscpNamesForMediaType" parameterOrder="in0">
+
+         <wsdl:input message="impl:getAllAssignedMLPPDscpNamesForMediaTypeRequest" name="getAllAssignedMLPPDscpNamesForMediaTypeRequest"/>
+
+         <wsdl:output message="impl:getAllAssignedMLPPDscpNamesForMediaTypeResponse" name="getAllAssignedMLPPDscpNamesForMediaTypeResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllMLPPDscpMediaTypes">
+
+         <wsdl:input message="impl:getAllMLPPDscpMediaTypesRequest" name="getAllMLPPDscpMediaTypesRequest"/>
+
+         <wsdl:output message="impl:getAllMLPPDscpMediaTypesResponse" name="getAllMLPPDscpMediaTypesResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMLPPDscpParmData" parameterOrder="in0">
+
+         <wsdl:input message="impl:getMLPPDscpParmDataRequest" name="getMLPPDscpParmDataRequest"/>
+
+         <wsdl:output message="impl:getMLPPDscpParmDataResponse" name="getMLPPDscpParmDataResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdl:input message="impl:getWSVersionRequest" name="getWSVersionRequest"/>
+
+         <wsdl:output message="impl:getWSVersionResponse" name="getWSVersionResponse"/>
+
+         <wsdl:fault message="impl:ProvisioningException" name="ProvisioningException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MLPPDscpUserService" type="impl:MLPPDscpUserIF">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAllAssignedMLPPDscpForMediaType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllAssignedMLPPDscpForMediaTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllAssignedMLPPDscpForMediaTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllAssignedMLPPDscpNamesForMediaType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllAssignedMLPPDscpNamesForMediaTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllAssignedMLPPDscpNamesForMediaTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllMLPPDscpMediaTypes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllMLPPDscpMediaTypesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllMLPPDscpMediaTypesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMLPPDscpParmData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMLPPDscpParmDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMLPPDscpParmDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getWSVersion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getWSVersionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getWSVersionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisioningException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisioningException" namespace="mlpp.ws.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MLPPDscpUserIFService">
+
+      <wsdl:port binding="impl:MLPPDscpUserService" name="MLPPDscpUserService">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/MLPPDscpUserService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

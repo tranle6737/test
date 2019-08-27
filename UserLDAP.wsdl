@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="userldap.opi.ims.nortelnetworks.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="userldap.opi.ims.nortelnetworks.com" xmlns:intf="userldap.opi.ims.nortelnetworks.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns126="opi.ims.nortelnetworks.com" xmlns:tns153="directorysearch.opi.ims.nortelnetworks.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="directorysearch.opi.ims.nortelnetworks.com"/>
+   <import namespace="userldap.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="ProvisionableEntity">
+    <sequence/>
+   </complexType>
+   <complexType name="ProvisionException">
+    <sequence>
+     <element name="defaultMessage" nillable="true" type="soapenc:string"/>
+     <element name="errorCode" nillable="true" type="soapenc:string"/>
+     <element name="message" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="LDAPSchema">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="MCPUser" nillable="true" type="soapenc:string"/>
+       <element name="businessPhone" nillable="true" type="soapenc:string"/>
+       <element name="cellPhone" nillable="true" type="soapenc:string"/>
+       <element name="email" nillable="true" type="soapenc:string"/>
+       <element name="faxNumber" nillable="true" type="soapenc:string"/>
+       <element name="firstName" nillable="true" type="soapenc:string"/>
+       <element name="homePhone" nillable="true" type="soapenc:string"/>
+       <element name="jpegPhoto" nillable="true" type="soapenc:string"/>
+       <element name="lastName" nillable="true" type="soapenc:string"/>
+       <element name="ldapDN" nillable="true" type="soapenc:string"/>
+       <element name="pagerNUmber" nillable="true" type="soapenc:string"/>
+       <element name="userName" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="directorysearch.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="userldap.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="LDAPServerInfo">
+    <complexContent>
+     <extension base="tns126:ProvisionableEntity">
+      <sequence>
+       <element name="password" nillable="true" type="soapenc:string"/>
+       <element name="providerURL" nillable="true" type="soapenc:string"/>
+       <element name="requireServerLogin" type="xsd:boolean"/>
+       <element name="serverAddress" nillable="true" type="soapenc:string"/>
+       <element name="serverPort" type="xsd:int"/>
+       <element name="serverType" nillable="true" type="soapenc:string"/>
+       <element name="useSecureConn" type="xsd:boolean"/>
+       <element name="userName" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="userldap.opi.ims.nortelnetworks.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="opi.ims.nortelnetworks.com"/>
+   <import namespace="directorysearch.opi.ims.nortelnetworks.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns153_LDAPServerInfo">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns153:LDAPServerInfo[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getLdapDirSchemaResponse">
+
+      <wsdl:part name="getLdapDirSchemaReturn" type="tns126:LDAPSchema"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProvisionException">
+
+      <wsdl:part name="fault" type="tns126:ProvisionException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryLdapServerInfoResponse">
+
+      <wsdl:part name="getPrimaryLdapServerInfoReturn" type="tns153:LDAPServerInfo"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getLdapDirSchemaRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSecondaryLdapServerInfoRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getLdapServerInfoResponse">
+
+      <wsdl:part name="getLdapServerInfoReturn" type="impl:ArrayOf_tns153_LDAPServerInfo"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrimaryLdapServerInfoRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSecondaryLdapServerInfoResponse">
+
+      <wsdl:part name="getSecondaryLdapServerInfoReturn" type="tns153:LDAPServerInfo"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getLdapServerInfoRequest">
+
+      <wsdl:part name="in0" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserLDAPMgr">
+
+      <wsdl:operation name="getSecondaryLdapServerInfo" parameterOrder="in0">
+
+         <wsdl:input message="impl:getSecondaryLdapServerInfoRequest" name="getSecondaryLdapServerInfoRequest"/>
+
+         <wsdl:output message="impl:getSecondaryLdapServerInfoResponse" name="getSecondaryLdapServerInfoResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLdapDirSchema" parameterOrder="in0">
+
+         <wsdl:input message="impl:getLdapDirSchemaRequest" name="getLdapDirSchemaRequest"/>
+
+         <wsdl:output message="impl:getLdapDirSchemaResponse" name="getLdapDirSchemaResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLdapServerInfo" parameterOrder="in0">
+
+         <wsdl:input message="impl:getLdapServerInfoRequest" name="getLdapServerInfoRequest"/>
+
+         <wsdl:output message="impl:getLdapServerInfoResponse" name="getLdapServerInfoResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryLdapServerInfo" parameterOrder="in0">
+
+         <wsdl:input message="impl:getPrimaryLdapServerInfoRequest" name="getPrimaryLdapServerInfoRequest"/>
+
+         <wsdl:output message="impl:getPrimaryLdapServerInfoResponse" name="getPrimaryLdapServerInfoResponse"/>
+
+         <wsdl:fault message="impl:ProvisionException" name="ProvisionException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserLDAP" type="impl:UserLDAPMgr">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSecondaryLdapServerInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSecondaryLdapServerInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSecondaryLdapServerInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLdapDirSchema">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getLdapDirSchemaRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getLdapDirSchemaResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLdapServerInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getLdapServerInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getLdapServerInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrimaryLdapServerInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrimaryLdapServerInfoRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrimaryLdapServerInfoResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProvisionException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ProvisionException" namespace="userldap.opi.ims.nortelnetworks.com" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserLDAPMgrService">
+
+      <wsdl:port binding="impl:UserLDAP" name="UserLDAP">
+
+         <wsdlsoap:address location="http://localhost:80/sopi/services/UserLDAP"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
